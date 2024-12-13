@@ -1,0 +1,645 @@
+.svg-icon {
+	&.ico-angle { //꺽쇠모양
+		@include icon-set(ico_angle);
+		//disabled (for selectbox)
+		&.disabled {
+			@include icon-set(ico_angle_disabled, $effect: pure);
+		}
+		//default: down
+		&.up {
+			transform: rotate(180deg);
+		}
+		&.left {
+			transform: rotate(90deg);
+		}
+		&.right {
+			transform: rotate(-90deg);
+		}
+	}
+	//추후삭제
+	&.ico-arr-down {
+		//파일명 수정필요
+		@include icon-set(ico_arr_16_down);
+	}
+	&.ico-sch {
+		@include icon-set(ico_sch);
+		//색상별 이미지 ico_sch_20_wh
+	}
+	//추후삭제
+	&.ico-arr {
+		//파일명 수정필요
+		@include icon-set(ico_arr_20_right);
+	}
+	&.ico-upload {
+		@include icon-set(ico_upload);
+	}
+	&.ico-call {
+		@include icon-set(ico_call);
+	}
+	&.ico-faq {
+		@include icon-set(ico_faq);
+	}
+	&.ico-like {
+		//파일명 수정필요
+		@include icon-set(ico_like_20);
+	}
+	&.ico-share {
+		//파일명 수정필요
+		@include icon-set(ico_share_20);
+	}
+	&.ico-more {
+		@include icon-set(ico_more);
+	}
+	//class명 수정필요
+	&.ico-sch1 {
+		//파일명 수정필요
+		@include icon-set(ico_sch1_20);
+	}
+	//.ico-link 와 동일 이미지
+	&.ico-go {
+		@include icon-set(ico_go);
+	}
+	&.ico-down {
+		@include icon-set(ico_download);
+	}
+	&.ico-filter {
+		//파일명 수정필요
+		@include icon-set(ico_filter_20);
+	}
+	//.ico-refresh과 동일 이미지
+	&.ico-reset {
+		@include icon-set(ico_reset);
+	}
+	&.ico-log {
+		@include icon-set(ico_login);
+	}
+	&.ico-func {
+		@include icon-set(ico_expand);
+		//default:right
+		&.up {
+			transform: rotate(-90deg);
+		}
+
+		//gap 확인필요
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-logout {
+		@include icon-set(ico_logout);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-email {
+		//파일명 수정필요
+		@include icon-set(ico_email_20);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-print {
+		//파일명 수정필요
+		@include icon-set(ico_print_20);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-scrap {
+		//파일명 수정필요
+		@include icon-set(ico_scrap_20);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-del {
+		@include icon-set(ico_delete);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-popup-close {
+		@include icon-set(ico_close);
+	}
+	&.ico-delete-fill {
+		@include icon-set(ico_delete_fill, pure);
+	}
+	&.ico-plus {
+		@include icon-set(ico_plus);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-setting {
+		//파일명 수정필요
+		@include icon-set(ico_setting_20);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	//.ico-go 와 동일 이미지
+	&.ico-link {
+		@include icon-set(ico_go);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-comment {
+		//파일명 수정필요
+		@include icon-set(ico_comment_16);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-prev {
+		//파일명 수정필요
+		@include icon-set(ico-prev_24);
+		& {
+			gap: var(--krds-gap-3);	
+		}
+	}
+	&.ico-info {
+		@include icon-set(ico_info, pure);
+	}
+	//.ico-reset과 동일 이미지
+	&.ico-refresh {
+		@include icon-set(ico_reset);
+	}
+	//추후삭제 (ico-angle 사용)
+	&.ico-toggle {
+		//파일명 수정필요
+		@include icon-set(ico_arr_16_down);
+	}
+	&.ico-pw-visible {
+		@include icon-set(ico_pw_visible_off);
+	}
+	&.ico-pw-visible-on {
+		@include icon-set(ico_pw_visible_on);
+	}
+	//추후삭제 (ico-help-fill 사용)
+	&.ico-help {
+		//파일명 수정필요
+		@include icon-set(ico_help_24);
+	}
+	&.ico-help-fill {
+		//파일명 수정필요
+		@include icon-set(ico_help_24, pure);
+	}
+	//추후삭제 (ico-angle 사용)
+	&.ico-page-prev {
+		//파일명 수정필요
+		@include icon-set(ico_swiper_prev);
+		//색상별 이미지 ico_swiper_prev_gray, ico_swiper_next_wh
+	}
+	//추후삭제 (ico-angle 동일 이미지 확인)
+	&.ico-page-next {
+		//파일명 수정필요
+		@include icon-set(ico_swiper_next);
+		//색상별 이미지 ico_swiper_next_gray, ico_swiper_prev_wh
+	}
+
+
+
+	//확인필요 (ico-angle 동일 이미지 확인)
+	&.ico-arr-cate {
+		//파일명 수정필요
+		@include icon-set(ico_arr_16_right_gray70);
+	}
+
+	//추후삭제 
+	&.ico-arr-blue {
+		//파일명 수정필요
+		@include icon-set(ico_arr_20_down_blue);
+		//색상별 이미지 ico_arr_20_down_white
+	}	
+
+	//추후삭제 
+	&.ico-arr-disable {
+		//파일명 수정필요
+		@include icon-set(ico_arr_20_right_disabled);
+	}
+
+	&.ico-bread-home {
+		@include icon-set(ico_bread_home);
+	}
+
+	//확인필요 (ico-angle 동일 이미지 확인)
+	&.ico-cal-dropdownn {
+		//파일명 수정필요
+		@include icon-set(ico_cal_dropdown);
+	}
+
+	//파일명 수정필요
+	&.ico-cal-move {
+		//파일명 수정필요
+		@include icon-set(ico_cal_move);
+	}
+	
+	&.ico-calendar {
+		@include icon-set(ico_calendar);
+	}
+
+	&.ico-success-fill {
+		@include icon-set(ico_success_fill, pure);
+		//색상별 이미지. ico_check_chip, ico_check_chip_checked, ico_check_chip_disabled
+	}
+	&.ico-information-fill {
+		@include icon-set(ico_information_fill, pure);
+	}
+	&.ico-error-fill {
+		@include icon-set(ico_error_fill, pure);
+	}
+	&.ico-complete-fill {
+		@include icon-set(ico_complete_fill, pure);
+	}
+
+	//파일명 수정필요
+	&.ico-check-primary {
+		//파일명 수정필요
+		@include icon-set(ico_check_primary_checked);
+		//색상별 이미지. ico_check_primary_disabled
+	}
+
+	//확인필요 (ico-del 동일 이미지 확인) 
+	&.ico-chip-del {
+		//파일명 수정필요
+		@include icon-set(ico_chip_del);
+		//색상별 이미지 ico_chip_del_disabled
+	}
+
+	//확인필요 (ico-del 동일 이미지 확인) 
+	&.ico-gnb-close {
+		//파일명 수정필요
+		@include icon-set(ico_close_24);
+	}
+
+	//확인필요 (ico-del 동일 이미지 확인) 
+	&.ico-modal-close {
+		//파일명 수정필요
+		@include icon-set(ico_close_modal);
+	}
+
+	//파일명 수정필요
+	&.ico-fold {
+		//파일명 수정필요
+		@include icon-set(ico_foldable);
+
+		&.right {
+			transform: rotate(-180deg);
+		}
+	}
+	
+	//확인필요 (ico-info 동일 이미지 확인)
+	&.ico-hint {
+		//파일명 수정필요
+		@include icon-set(ico_hint_20, pure);
+		//색상별 이미지 ico_hint_error, ico_invalid_error_20
+	}
+
+	&.ico-plus {
+		//파일명 수정필요
+		@include icon-set(ico_plus);
+	}
+
+	//확인필요 (ico-angle 동일 이미지 확인) 
+	&.ico-pagination-prev {
+		//파일명 수정필요
+		@include icon-set(ico_page_arr_left);
+	}
+
+	//확인필요 (ico-angle 동일 이미지 확인) 
+	&.ico-pagination-next {
+		//파일명 수정필요
+		@include icon-set(ico_page_arr_right);
+	}
+
+	&.ico-ellipsis {
+		//파일명 수정필요
+		@include icon-set(ico_ellipsis);
+	}
+
+	//확인필요 (ico-angle 동일 이미지 확인) 
+	&.ico-select {
+		//파일명 수정필요
+		@include icon-set(ico_select);
+		//사이즈별 ico_select_20, ico_select_lg
+	}
+
+	//파일명 수정필요
+	&.ico-step {
+		//파일명 수정필요
+		@include icon-set(ico_step_active);
+	}
+
+	//확인필요 (ico-plus 동일 이미지 확인) 
+	&.ico-swiper-more {
+		//파일명 수정필요
+		@include icon-set(ico_swiper_more);
+	}
+
+	//파일명 수정필요
+	&.ico-swiper-play {
+		//파일명 수정필요
+		@include icon-set(ico_swiper_play);
+	}
+
+	//파일명 수정필요
+	&.ico-swiper-stop {
+		//파일명 수정필요
+		@include icon-set(ico_swiper_stop);
+	}
+
+	//파일명 수정필요 (ico-plus 동일 이미지 확인 - 크기, 색상, 두께 상이함) 
+	&.ico-arr-tool {
+		//파일명 수정필요
+		@include icon-set(ico_tool_arr);
+	}
+
+	//파일명 수정필요
+	&.ico-tooltip {
+		//파일명 수정필요
+		@include icon-set(ico_tooltip_20);
+	}
+
+	//파일명 수정필요
+	&.ico-tooltip {
+		//파일명 수정필요
+		@include icon-set(ico_tooltip_20);
+	}
+
+	//파일명 수정필요
+	&.ico-urgent-danger {
+		//파일명 수정필요
+		@include icon-set(ico_urgent_badge_danger);
+	}
+
+	//파일명 수정필요
+	&.ico-urgent-info {
+		//파일명 수정필요
+		@include icon-set(ico_information);
+	}
+
+	//파일명 수정필요
+	&.ico-urgent-ok {
+		//파일명 수정필요
+		@include icon-set(ico_urgent_badge_ok);
+	}
+
+	//확인필요 (ico-angle 동일 이미지 확인) 
+	&.ico-arr-lnb {
+		//파일명 수정필요
+		@include icon-set(lnb_ico_prev);
+	}
+
+	&.ico-blog {
+		@include icon-set(ico_blog, pure);
+	}
+
+	&.ico-facebook {
+		@include icon-set(ico_facebook, pure);
+	}
+
+	&.ico-instagram {
+		@include icon-set(ico_instagram, pure);
+	}
+
+	&.ico-sns-x {
+		@include icon-set(ico_sns_x, pure);
+	}
+
+	&.ico-youtube {
+		@include icon-set(ico_youtube, pure);
+	}
+
+	//확인필요 (ico-info 동일 이미지 확인)
+	&.ico-arr-gnb {
+		//파일명 수정필요
+		@include icon-set(head_gnb_ico_arr);
+		//회전 이미지 head_gnb_ico_arr_on
+	}
+
+	//파일명 수정필요
+	&.ico-all {
+		//파일명 수정필요
+		@include icon-set(ico_all);
+	}
+
+	&.ico-join {
+		@include icon-set(ico_join);
+	}
+
+	//파일명 수정필요
+	&.ico-navi-login {
+		//파일명 수정필요
+		@include icon-set(head_ico_navi_login);
+	}
+
+	&.ico-my {
+		@include icon-set(ico_my);
+	}
+
+	//확인필요 (ico-sch 동일 이미지 확인)
+	&.ico-navi-sch {
+		//파일명 수정필요
+		@include icon-set(head_ico_navi_sch);
+	}
+
+	//파일명 수정필요
+	&.ico-nuri {
+		//파일명 수정필요
+		@include icon-set(head_ico_nuri);
+	}
+	
+	//확인필요 (ico-angle 동일 이미지 확인) 
+	&.ico-arr-expand {
+		//파일명 수정필요
+		@include icon-set(ico_arr_expand);
+	}
+
+	//파일명 수정필요
+	&.ico-check-circle {
+		//파일명 수정필요
+		@include icon-set(ico_check_rd_20, pure);
+	}
+	
+	//확인필요 (ico-plus 동일 이미지 확인) 
+	&.ico-plus-expand {
+		//파일명 수정필요
+		@include icon-set(ico_conts_expand);
+	}
+
+	//확인필요(ico-urgent-info 동일 이미지 확인) 
+	&.ico-helper-info {
+		//파일명 수정필요
+		@include icon-set(ico_information);
+	}
+
+	//확인필요(ico-info 동일 이미지 확인) 
+	&.ico-helper-trans {
+		//파일명 수정필요
+		@include icon-set(ico_information);
+	}
+
+	//확인필요(ico-info 동일 이미지 확인) 
+	&.ico-login-go {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_go);
+	}
+
+	&.ico-global {
+		@include icon-set(ico_global);
+	}
+
+	&.ico-view-mode {
+		@include icon-set(ico_view_mode);
+	}
+
+	&.ico-go-top {
+		@include icon-set(ico_go_top);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type01 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_01);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type02 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_02);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type03 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_03);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type04 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_04);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type05 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_05);
+	}
+
+	//파일명 수정필요
+	&.ico-login-type06 {
+		//파일명 수정필요
+		@include icon-set(ico_login_certify_type_06);
+	}
+
+	//파일명 수정필요
+	&.ico-outline {
+		//파일명 수정필요
+		@include icon-set(ico_outline);
+	}
+
+	//파일명 수정필요
+	&.ico-outline-check {
+		//파일명 수정필요
+		@include icon-set(ico_outline_chk);
+	}
+
+	//파일명 수정필요
+	&.ico-face-smile {
+		//파일명 수정필요
+		@include icon-set(ico_face_smile);
+	}
+
+	//파일명 수정필요
+	&.ico-face-sad {
+		//파일명 수정필요
+		@include icon-set(ico_face_sad);
+	}
+
+	//파일명 수정필요
+	&.ico-menu-blue01 {
+		//파일명 수정필요
+		@include icon-set(main_menu_blue_ico1);
+	}
+
+	//파일명 수정필요
+	&.ico-menu-blue02 {
+		//파일명 수정필요
+		@include icon-set(main_menu_blue_ico2);
+	}
+
+	//파일명 수정필요
+	&.ico-menu-blue03 {
+		//파일명 수정필요
+		@include icon-set(main_menu_blue_ico3);
+	}
+
+	//파일명 수정필요
+	&.ico-menu-blue04 {
+		//파일명 수정필요
+		@include icon-set(main_menu_blue_ico4);
+	}
+
+	//파일명 수정필요
+	&.ico-menu01 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico1);
+	}
+
+	//파일명 수정필요
+	&.ico-menu02 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico2);
+	}
+
+	//파일명 수정필요
+	&.ico-menu03 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico3);
+	}
+
+	//파일명 수정필요
+	&.ico-menu04 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico4);
+	}
+
+	//파일명 수정필요
+	&.ico-menu05 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico5);
+	}
+
+	//파일명 수정필요
+	&.ico-menu06 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico6);
+	}
+
+	//파일명 수정필요
+	&.ico-menu07 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico7);
+	}
+
+	//파일명 수정필요
+	&.ico-menu08 {
+		//파일명 수정필요
+		@include icon-set(main_menu_ico8);
+	}
+	&.ico-flag {
+		@include icon-set(ico_flag, $effect: pure);
+	}
+
+	&.ico-file {
+		@include icon-set(ico_file);
+	}
+
+	//파일명 수정필요
+	&.ico-checkbox {
+		@include icon-set(ico_checkbox_checked);
+	}
+}
+  

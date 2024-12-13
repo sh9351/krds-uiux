@@ -1,0 +1,279 @@
+/* input box style */
+//사이즈 정의
+@mixin form-control-size-variable() {
+	$form-control-size: (
+		small: (
+			size-height: var(--krds-size-height-6),
+			radius: var(--krds-radius-medium1),
+			pc-font-size: var(--krds-pc-font-size-label-small),
+			mobile-font-size: var(--krds-mobile-font-size-label-small),
+		),
+		medium: (
+			size-height: var(--krds-size-height-7),
+			radius: var(--krds-radius-medium2),
+			pc-font-size: var(--krds-pc-font-size-label-medium),
+			mobile-font-size: var(--krds-mobile-font-size-label-medium),
+		),
+		large: (
+			size-height: var(--krds-size-height-8),
+			radius: var(--krds-radius-medium3),
+			pc-font-size: var(--krds-pc-font-size-label-large),
+			mobile-font-size: var(--krds-mobile-font-size-label-large),
+		),
+		xlarge: (
+			size-height: var(--krds-size-height-11),
+			radius: var(--krds-radius-large2),
+			pc-font-size: var(--krds-pc-font-size-heading-small),
+			mobile-font-size: var(--krds-mobile-font-size-heading-small),
+		),
+	) !default;
+
+	//css variable 생성
+	--krds-form-control--padding-x: var(--krds-padding-6);
+	@each $size, $types in $form-control-size {
+		@each $type, $value in $types {
+			//css variable 생성
+			--krds-form-control--#{$type}-#{$size}: #{$value};
+		}
+	}
+
+	//class 정의
+	& {
+		@include form-control-size(large);
+
+		@each $size, $types in $form-control-size {
+			&.#{$size} {
+				@include form-control-size(#{$size});
+			}
+		}
+	}
+}
+
+//컬러 정의
+@mixin form-control-color-variable($mode: light) {
+	--krds-form-control--color-surface: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-control--color-surface-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-control--color-surface-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-control--color-surface-error: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-control--color-border: var(--krds-#{$mode}-color-input-border);
+	--krds-form-control--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-form-control--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-control--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-control--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+	--krds-form-control--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-form-control--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-form-control--color-text-readonly: var(--krds-#{$mode}-color-text-subtle);
+	--krds-form-control--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+	--krds-form-control--color-text-placeholder: var(--krds-#{$mode}-color-text-disabled);
+	--krds-form-control--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+}
+@mixin form-control-size($unit) {
+	height: var(--krds-form-control--size-height-#{$unit});
+	border-radius: var(--krds-form-control--radius-#{$unit});
+	font-size: var(--krds-form-control--pc-font-size-#{$unit});
+	@if ($unit == 'xlarge') {
+		font-weight: var(--krds-font-weight-bold);
+	}
+	@include mobile {
+		font-size: var(--krds-form-control--mobile-font-size-#{$unit});
+	}
+}
+
+//모드 설정
+$mode-setting: light;
+.form-control {
+	@include form-control-size-variable();
+	@include form-control-color-variable($mode: #{$mode-setting});
+
+	//default size large
+	position: relative;
+	width: 100%;
+	padding:0 var(--krds-form-control--padding-x);
+	@include border-size-mode(#{$mode-setting});
+	background-color: var(--krds-form-control--color-surface);
+	border: 0.1rem solid var(--krds-form-control--color-border);
+	font-family: inherit;
+	color: var(--krds-form-control--color-text);
+	transition: var(--krds-transition-base);
+
+	&:focus,
+	&.focus {
+		border-color: var(--krds-form-control--color-border-active);
+		border-width: 2px;
+		outline: none;
+		box-shadow: none;
+	}
+	&[readonly] {
+		background-color: var(--krds-form-control--color-surface-readonly);
+		border-color: var(--krds-form-control--color-border-readonly);
+		color: var(--krds-form-control--color-text-readonly);
+		&.datepicker {
+			background-color: var(--krds-form-control--color-surface);
+			border-color: var(--krds-form-control--color-border );
+			color: var(--krds-form-control--color-text);
+		}
+		&:focus {
+			border-color: var(--krds-form-control--color-border-active);
+		}
+	}
+	&[disabled] {
+		background-color: var(--krds-form-control--color-surface-disabled);
+		border-color: var(--krds-form-control--color-border-disabled);
+		color: var(--krds-form-control--color-text-disabled);
+	}
+	&::-webkit-input-placeholder {
+		color: var(--krds-form-control--color-text-placeholder);
+	}
+	&::-moz-placeholder {
+		color: var(--krds-form-control--color-text-placeholder);
+	}
+	&:-ms-input-placeholder {
+		color: var(--krds-form-control--color-text-placeholder);
+	}
+	&::-ms-input-placeholder {
+		color: var(--krds-form-control--color-text-placeholder);
+	}
+	&:not(textarea):placeholder-shown {
+		@include ellipsis(1);
+	}
+}
+textarea {
+	&.form-control {
+		--krds-form-control--textarea-size-height: 14.4rem;
+		--krds-form-control--textarea-padding-x: var(--krds-padding-6);
+		--krds-form-control--textarea-padding-y: var(--krds-padding-3);
+		height: var(--krds-form-control--textarea-size-height);
+		padding: var(--krds-form-control--textarea-padding-y) var(--krds-form-control--textarea-padding-x);
+		line-height: var(--krds-transition-base);
+	}
+}
+.is-error {
+	.form-control {
+		background-color: var(--krds-form-control--color-surface-error);
+		border-color: var(--krds-form-control--color-border-error);
+		border-width: 2px;
+		color: var(--krds-form-control--color-text-error);
+		&:focus {
+			border-color: var(--krds-form-control--color-border-active);
+		}
+	}
+}
+
+.textarea-wrap {
+	@include flex-layout($fd:column, $ai:normal);
+	gap: var(--krds-gap-3);
+	width: 100%;
+}
+.textarea-count {
+	--krds-form-control--count-number-pc-font-size: var(--krds-pc-font-size-body-small);
+	--krds-form-control--count-number-mobile-font-size: var(--krds-mobile-font-size-body-small);
+	--krds-form-control--count-number-color-text: var(--krds-#{$mode-setting}-color-text-subtle);
+	--krds-form-control--count-number-color-text-active: var(--krds-#{$mode-setting}-color-text-primary);
+	--krds-form-control--count-number-color-text-error: var(--krds-#{$mode-setting}-color-text-danger);
+
+	@include flex-layout($ai: center, $jc: flex-end);
+	gap: var(--krds-gap-1);
+	width: 100%;
+	font-size: var(--krds-form-control--count-number-pc-font-size);
+	color: var(--krds-form-control--count-number-color-text);
+	@include mobile {
+		font-size: var(--krds-form-control--count-number-mobile-font-size);
+	}
+	.count-now {
+		color: var(--krds-form-control--count-number-color-text-active);
+	}
+}
+.is-error {
+	.textarea-count {
+		.count-now {
+			color: var(--krds-form-control--count-number-color-text-error);
+		}
+	}
+}
+
+
+.textarea-bottom {
+	@include flex-layout();
+	gap: var(--krds-gap-5);
+	.textarea-count {
+		margin-left: auto;
+		flex-basis: content;
+		order:2;
+	}
+	.form-hint-invalid {
+		align-items: flex-start;
+		order:1;
+		&::before {
+			flex:none;
+		}
+	}
+}
+
+/* 날짜선택 */
+.datepicker-input {
+	--krds-form-control--color-surface: var(--krds-#{$mode-setting}-color-input-surface);
+
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	.form-control {
+		padding-right: var(--krds-form-group--icon-padding-right);
+		background-image: none;
+	}
+	.krds-btn {
+		@include position($t: 50%, $r: var(--krds-padding-7)); //form control large 사이즈에만 버튼 들어감
+		transform: translateY(-50%);
+	}
+    .range {
+        &::after {
+            display:none;
+        }
+    }
+}
+
+/* form layouts */
+/*.form-wrap {
+	display: grid;
+	gap: var(--krds-spacer-6);
+
+	> li,
+	&.standalone,
+	> .row {
+		line-height: $line-height-none;
+		@at-root .form-tit {
+			display: flex;
+			position: relative;
+			font-size: var(--krds-pc-font-size-body-small);
+			color: var(--krds-black);
+			!*line-height: $line-height-none;*!
+		}
+	}
+	.form-conts {
+		&.group {
+			@include group-wrap;
+			> .form-control {
+				@include group;
+				margin-right: var(--krds-spacer-2);
+			}
+		}
+	}
+}*/
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	.form-control {
+		@include form-control-color-variable($mode: #{$mode-setting});
+		@include border-size-mode(#{$mode-setting});
+	}
+	.textarea-count {
+		--krds-form-control--count-number-color-text: var(--krds-#{$mode-setting}-color-text-subtle);
+		--krds-form-control--count-number-color-text-active: var(--krds-#{$mode-setting}-color-text-primary);
+	}
+
+	/* 날짜선택 */
+	.datepicker-input {
+		--krds-form-control--color-surface: var(--krds-#{$mode-setting}-color-input-surface);
+	}
+}

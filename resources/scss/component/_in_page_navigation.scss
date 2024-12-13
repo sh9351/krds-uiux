@@ -1,0 +1,201 @@
+/* 콘텐츠 내 탐색 */
+
+//사이즈 정의
+@mixin quick-nav-size-variable() {
+	--krds-quick-nav--width: 16rem;
+	--krds-quick-nav--gap: var(--krds-gap-5);
+	--krds-quick-nav--position-top: 25.6rem;
+	--krds-quick-nav--position-right: calc((100% - var(--krds-contents-wrap-size)) / 2 - (var(--krds-quick-nav--width) - var(--krds-contents-padding-x) + var(--krds-pc-gap-layout-contents-right)));
+	--krds-quick-nav--header-gap: var(--krds-gap-2);
+	--krds-quick-nav--header-caption-pc-font-size: var(--krds-pc-font-size-body-xsmall);
+	--krds-quick-nav--header-caption-mobile-font-size: var(--krds-mobile-font-size-body-xsmall);
+	--krds-quick-nav--header-title-pc-font-size: var(--krds-pc-font-size-heading-xsmall);
+	--krds-quick-nav--header-title-mobile-font-size: var(--krds-mobile-font-size-heading-xsmall);
+	--krds-quick-nav--list-anchor-border-radius: var(--krds-radius-small3);
+	--krds-quick-nav--list-anchor-pc-font-size: var(--krds-pc-font-size-navigation-depth-small);
+	--krds-quick-nav--list-anchor-mobile-font-size: var(--krds-mobile-font-size-navigation-depth-small);
+	--krds-quick-nav--action-gap: var(--krds-gap-3);
+	--krds-quick-nav--action-info-pc-font-size: var(--krds-pc-font-size-body-small);
+	--krds-quick-nav--action-info-mobile-font-size: var(--krds-mobile-font-size-body-small);
+}
+//컬러 정의
+@mixin quick-nav-color-variable($mode: light) {
+	--krds-quick-nav--color-text-bolder: var(--krds-#{$mode}-color-text-bolder);
+	--krds-quick-nav--color-text-sub: var(--krds-#{$mode}-color-text-subtle);
+	--krds-quick-nav--list-anchor-color-text-selected: var(--krds-#{$mode}-color-text-secondary);
+	--krds-quick-nav--list-anchor-color-background: var(--krds-#{$mode}-color-action-secondary);
+	--krds-quick-nav--list-anchor-color-background-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-quick-nav--list-anchor-color-background-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-quick-nav--list-anchor-color-background-selected: var(--krds-#{$mode}-color-action-secondary-selected);
+}
+
+// 모드 설정
+$mode-setting: light;
+
+// krds-quick-nav-type
+.krds-quick-nav-type {
+	@include quick-nav-size-variable();
+	@include quick-nav-color-variable(#{$mode-setting});
+	
+	.krds-quick-nav-area {
+		@include position($p: fixed, $t: var(--krds-quick-nav--position-top), $r: var(--krds-quick-nav--position-right));
+		@include flex-layout($fd: column);
+		gap: var(--krds-quick-nav--gap);
+		width: var(--krds-quick-nav--width);
+		transition: var(--krds-transition-base);
+		z-index: 10;
+		> * {
+			width: 100%;
+		}
+		.quick-nav-header {
+			@include flex-layout($fd: column);
+			gap: var(--krds-quick-nav--header-gap);
+			.quick-caption {
+				font-size: var(--krds-quick-nav--header-caption-pc-font-size);
+			}
+			.quick-title {
+				font-size: var(--krds-quick-nav--header-title-pc-font-size);
+				font-weight: var(--krds-font-weight-bold);
+				color: var(--krds-quick-nav--color-text-bolder);
+			}
+		}
+		.quick-nav-list {
+			ul {
+				@include flex-layout($fd: column);
+				gap: var(--krds-gap-2);
+			}
+			li {
+				width: 100%;
+				> a {
+					position: relative;
+					display: block;
+					padding: var(--krds-padding-2) var(--krds-padding-3);
+					font-size: var(--krds-quick-nav--list-anchor-pc-font-size);
+					color: var(--krds-quick-nav--color-text-sub);
+					background-color: var(--krds-quick-nav--list-anchor-color-background);
+					border-radius: var(--krds-quick-nav--list-anchor-border-radius);
+					transition: var(--krds-transition-base);
+					&:hover {
+						background-color: var(--krds-quick-nav--list-anchor-color-background-hover);
+					}
+					&:active {
+						background-color: var(--krds-quick-nav--list-anchor-color-background-pressed);
+					}
+					&.active {
+						color: var(--krds-quick-nav--list-anchor-color-text-selected);
+						background-color: var(--krds-quick-nav--list-anchor-color-background-selected);
+						font-weight: var(--krds-font-weight-bold);
+					}
+				}
+			}
+		}
+		.quick-nav-action {
+			@include flex-layout($fd: column, $ai: center);
+			gap: var(--krds-quick-nav--action-gap);
+			.krds-btn {
+				width: 100%;
+			}
+			.quick-info {
+				font-size: var(--krds-quick-nav--action-info-pc-font-size);
+				color: var(--krds-quick-nav--color-text-sub);
+			}
+		}
+	}
+}
+
+// scroll-down
+.scroll-down {
+	.krds-quick-nav-type {
+		.krds-quick-nav-area {
+			top: 6rem; // 기존 값
+		}
+	}
+}
+
+// 고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	// krds-quick-nav-type
+	.krds-quick-nav-type {
+		.krds-quick-nav-area {
+			// var
+			@include quick-nav-color-variable(#{$mode-setting});
+
+			.quick-nav-header {
+				.quick-title {
+					color: var(--krds-quick-nav--color-text-bolder);
+				}
+			}
+			.quick-nav-list {
+				li {
+					> a {
+						color: var(--krds-quick-nav--color-text-sub);
+						background-color: var(--krds-quick-nav--list-anchor-color-background);
+						&:hover {
+							background-color: var(--krds-quick-nav--list-anchor-color-background-hover);
+						}
+						&:active {
+							background-color: var(--krds-quick-nav--list-anchor-color-background-pressed);
+						}
+						&.active {
+							color: var(--krds-quick-nav--list-anchor-color-text-selected);
+							background-color: var(--krds-quick-nav--list-anchor-color-background-selected);
+						}
+					}
+				}
+			}
+			.quick-nav-action {
+				.quick-info {
+					color: var(--krds-quick-nav--color-text-sub);
+				}
+			}
+		}
+	}
+}
+
+// 미디어 쿼리
+@media (max-width: 1680px) {
+	.krds-quick-nav-type {
+		& > .inner:not(.in-between) {
+			padding-right: calc(var(--krds-quick-nav--width) + var(--krds-pc-gap-layout-contents-right) + var(--krds-contents-padding-x));
+		}
+		.in-between {
+			.contents {
+				padding-right: calc(var(--krds-quick-nav--width) + var(--krds-pc-gap-layout-contents-right));
+			}
+		}
+		.krds-quick-nav-area {
+			--krds-quick-nav--position-right: calc((100% - var(--krds-contents-wrap-size)) / 2 + var(--krds-contents-padding-x));
+		}
+	}
+}
+@media (max-width: 1280px) {
+	.krds-quick-nav-type {
+		.krds-quick-nav-area {
+			--krds-quick-nav--position-right: var(--krds-contents-padding-x); 
+		}
+	}
+}
+
+// responsive mobile
+@include mobile {
+	.krds-quick-nav-type {
+		& > .inner:not(.in-between) {
+			padding-right: var(--krds-contents-padding-x);
+		}
+		.krds-quick-nav-area {
+			position: static;
+			width: 100%;
+			transition: none;
+			~ .tab-conts{
+				margin-top: var(--krds-gap-8);
+			}
+
+			.quick-nav-action {
+				display: none;
+			}
+		}
+	}
+}
