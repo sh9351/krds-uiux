@@ -1,12 +1,6 @@
 //focus color
 //추후삭제
 @mixin focus($offset: -.4rem, $color: var(--krds-light-color-border-primary), $alpha: .8) {
-	//border-radius: inherit;
-	//outline-offset: $offset;
-	//$transparent: 1 - $alpha;
-	//$focus-color: transparentize($color, $transparent);
-	//outline: 2px solid $focus-color;
-	//outline: 0.2rem solid var(--krds-light-color-border-inverse);
 	box-shadow: var(--krds-box-shadow-outline-inset);
 	outline-offset: $offset;
 }
@@ -17,12 +11,6 @@
 	flex-grow: $grow;
 }
 
-// **** area mixin **** //
-//columns
-@mixin columns($total, $num, $gutter) {
-
-}
-
 //position
 @mixin position($p: absolute, $t: null, $b: null, $l: null, $r: null) {
 	position: $p;
@@ -30,13 +18,6 @@
 	bottom: $b;
 	left: $l;
 	right: $r;
-}
-
-//추후삭제
-//width height 같게
-@mixin foursquare($size) {
-	width: $size;
-	height: $size;
 }
 
 //square rectangle
@@ -143,7 +124,7 @@
 	white-space: normal;
 	word-spacing: normal;
 	line-break: auto;
-	@include mobile {
+	@include size-medium {
 		font-size: var(--krds-mobile-font-size-body-medium);
 	}
 }
@@ -191,11 +172,6 @@
 	[data-krds-mode="#{$mode}"] {
 		@content;
 	}
-	//@if ($mode == 'high-contrast') {
-	//	@media (forced-colors: active){
-	//		//@content;
-	//	}
-	//}
 }
 
 //사이즈별 variable
@@ -203,11 +179,11 @@
 	//unit value: xsmall small medium larger xlarge
 	gap: var(--krds-button--gap-#{$unit});
 	height: var(--krds-button--size-height-#{$unit});
-	padding: 0 var(--krds-button--padding-x-#{$unit});
+	padding: var(--krds-button--padding-y-#{$unit}) var(--krds-button--padding-x-#{$unit});
 	border-radius: var(--krds-button--radius-#{$unit});
 	font-size: var(--krds-button--pc-font-size-#{$unit});
 	font-weight: var(--krds-button--font-weight-#{$unit});
-	@include mobile {
+	@include size-medium {
 		font-size: var(--krds-button--mobile-font-size-#{$unit});
 	}
 	& {

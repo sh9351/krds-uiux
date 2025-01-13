@@ -35,7 +35,7 @@
 	--krds-modal--color-text: var(--krds-#{$mode}-color-text-basic);
 	--krds-modal--wrap-color-surface: var(--krds-#{$mode}-color-surface-white-subtler);
 	--krds-modal--wrap-color-border: var(--krds-#{$mode}-color-border-gray);
-	--krds-modal--wrap-shadow: 0 0 0.2rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow2), 0 1.6rem 2.4rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow3);
+	--krds-modal--wrap-shadow: 0 0 0.2rem 0 var(--krds-#{$mode}-color-alpha-shadow2), 0 1.6rem 2.4rem 0 var(--krds-#{$mode}-color-alpha-shadow3);
 	--krds-modal--color-dim: var(--krds-#{$mode}-color-background-dim);
 	--krds-modal--full-popup-surface: var(--krds-#{$mode}-color-surface-secondary-subtler);
 }
@@ -58,8 +58,6 @@ $modal-size: (
 	left: 0;
 	z-index: -1;
 	visibility: hidden;
-	// overflow-x: hidden;
-	// overflow-y: auto;
 	width: 100%;
 	height: 100%;
 	opacity: 0;
@@ -68,7 +66,7 @@ $modal-size: (
 
 //모드 설정
 $mode-setting: light;
-.modal {
+.krds-modal {
 	@include modal-size-variable();
 	@include modal-color-variable(#{$mode-setting});
 
@@ -89,7 +87,7 @@ $mode-setting: light;
 	}
 
 	//dim-backgorund
-	&-back {
+	.modal-back {
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -106,7 +104,7 @@ $mode-setting: light;
 	}
 
 	//기본타입  
-	&-dialog {   
+	.modal-dialog {
 		@include flex-layout($ai: center);
 		position: relative;
 		z-index: 1020;
@@ -124,7 +122,6 @@ $mode-setting: light;
 		.modal-content {  
 			@include flex-layout($ai: center, $fd: column);
 			position: relative;
-			// overflow: hidden;
 			width: 100%;
 			max-height: 80%;
 			background-color: var(--krds-modal--wrap-color-surface);
@@ -179,9 +176,6 @@ $mode-setting: light;
 			padding: var(--krds-modal--btn-padding-top) var(--krds-modal--padding) var(--krds-modal--padding);
 			.krds-btn {
 				min-width: var(--krds-modal--btn-size-min-wdith);
-				// &.xlarge{
-				// 	flex: 1;
-				// }
 			}
 			&.multi-conts {
 				justify-content: space-between;
@@ -274,8 +268,8 @@ $mode-setting: light;
 }
 
 /* mobile */
-@include mobile {
-	.modal {
+@include size-medium {
+	.krds-modal {
 		&:not([data-type="bottom-sheet"]){
 			//기본 스타일(bottom-sheet제외) 
 			.modal-dialog { 
@@ -312,7 +306,7 @@ $mode-setting: light;
 			}
 		}
 
-		//풀펍업
+		//풀팝업
 		&[data-type="full"] { 
 			--krds-modal--full-mobile-btn-close-size: var(--krds-size-height-4);
 
@@ -332,9 +326,9 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	.modal {
+	.krds-modal {
 		@include modal-color-variable(#{$mode-setting});
-		&-dialog {
+		.modal-dialog {
 			.modal-conts {
 				@include scrollbar(#{$mode-setting});
 			}

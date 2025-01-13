@@ -1,7 +1,7 @@
-/* footer */
+/* 푸터 */
 //모드 설정
 $mode-setting: light;
-#footer {
+#krds-footer {
 	position: relative;
 	z-index: 50;
 	background-color: var(--krds-#{$mode-setting}-color-surface-gray-subtler);
@@ -14,9 +14,8 @@ $mode-setting: light;
 			display: flex;
 			padding: 0;
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				flex-direction: column;
-				// padding:0;
 			}
 			.link {
 				@include flex-layout($d: inline-flex, $jc: space-between, $ai: center);
@@ -45,14 +44,14 @@ $mode-setting: light;
 					background-color: var(--krds-#{$mode-setting}-color-action-secondary-pressed);
 				}
 				//태블릿 전용 속성
-				@include tablet {
+				@include size-medium-to-large {
 					font-size: 1.6rem; //토큰 없음
 					word-break: break-all;
 					padding: 0 var(--krds-padding-1) 0 var(--krds-padding-2);
 					text-align: left;
 				}
 				//모바일 전용
-				@include mobile {
+				@include size-medium {
 					font-size: var(--krds-mobile-font-size-body-small);
 					min-height: calc(var(--krds-size-height-7) - 0.2rem); //border 위 아래값 뺴기;
 					padding: 0 var(--krds-padding-6);
@@ -70,31 +69,28 @@ $mode-setting: light;
 	> .inner {
 		@include flex-layout($fd: column, $ai: normal);
 		//web 전용 속성
-		@include tabletMore() {
+		@include size-large-more {
 			gap: var(--krds-gap-9);
 			padding: var(--krds-padding-10) 0 var(--krds-padding-8);
-			// padding-top: var(--krds-padding-10);
-			// padding-bottom: var(--krds-padding-8);
 		}
-		@include desktopSmall() {
+		@include size-large-to-xlarge {
 			padding: var(--krds-padding-10) var(--krds-contents-padding-x) var(--krds-padding-8);
 		}
 		//태블릿 & 모바일 전용 속성
-		@include tabletLess() {
-			gap: var(--krds-gap-8);
-			padding-top: var(--krds-padding-9);
-			padding-bottom: var(--krds-padding-9);
+		@include size-large-less {
+			gap: var(--krds-gap-7);
+			padding: var(--krds-padding-8) var(--krds-padding-6);
 		}
 	}
 
-	.f-logo {
-		height: var(--krds-size-height-7);
-		img {
-			height: 100%;
-		}
-		//태블릿 & 모바일 전용 속성
-		@include tabletLess {
-			height: var(--krds-size-height-6);
+	.f-logo {		
+		@include square(13.7rem, var(--krds-size-height-7));
+		background-image: url(#{$url}/img/component/icon/ico_logo_krds.svg);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		@include size-medium {
+			@include square(9.9rem, 3.2rem);
 		}
 	}
 
@@ -102,16 +98,16 @@ $mode-setting: light;
 		display: flex;
 		gap: var(--krds-gap-7);
 		//web 전용 속성
-		@include tabletMore {
+		@include size-large-more {
 			justify-content: space-between;
 			flex: 1;
 		}
 		//태블릿 전용 속성
-		@include tablet {
+		@include size-medium-to-large {
 			gap: var(--krds-gap-5);
 		}
 		//모바일 전용
-		@include mobile {
+		@include size-medium {
 			flex-direction: column;
 		}
 		.f-info {
@@ -119,17 +115,17 @@ $mode-setting: light;
 			flex: 1;
 			gap: var(--krds-gap-5);
 			//태블릿 전용 속성
-			@include tablet {
+			@include size-medium-to-large {
 				flex: 3;
 			}
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				flex-direction: column;
 				gap: var(--krds-gap-5);
 				font-size: var(--krds-mobile-font-size-body-small);
 			}
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				.info-addr {
 					.br {
 						display: none;
@@ -141,18 +137,18 @@ $mode-setting: light;
 				width: 100%;
 				gap: var(--krds-gap-3);
 				//모바일 전용
-				@include mobile {
-					gap: var(--krds-gap-2);
+				@include size-medium {
+					gap: var(--krds-gap-3);
 				}
 				li {
 					@include flex-layout($ai: center);
 					//태블릿 전용 속성
-					@include tablet {
+					@include size-medium-to-large {
 						flex-direction: column;
 						align-items: flex-start;
 					}
 					//모바일 전용
-					@include mobile {
+					@include size-medium {
 						flex-wrap: wrap;
 						word-break: break-all;
 					}
@@ -186,18 +182,18 @@ $mode-setting: light;
 			@include flex-layout($fd: column);
 			gap: var(--krds-gap-5);
 			//web 전용 속성
-			@include tabletMore {
+			@include size-large-more {
 				width: 23.5%;
 			}
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				gap: var(--krds-gap-3);
 			}
 			dl {
 				@include flex-layout($fd: column);
 				gap: var(--krds-gap-2);
 				//모바일 전용
-				@include mobile {
+				@include size-medium {
 					font-size: var(--krds-mobile-font-size-body-small);
 				}
 				.info-tit {
@@ -210,30 +206,26 @@ $mode-setting: light;
 			flex-shrink: 0;
 			gap: var(--krds-gap-9);
 			//web 전용 속성
-			@include tabletMore {
+			@include size-large-more {
 				flex-shrink: 0;
 				width: 23.5%;
 			}
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				gap: var(--krds-gap-8);
 			}
 			.link-go {
 				@include flex-layout($fd: column);
-				//flex: 1;
 				gap: var(--krds-gap-2);
 				.krds-btn {
 					&.text {
-						//@include btn-text-variable();
 						@include btn-size(medium);
 					}
 				}
 				//모바일 전용
-				@include mobile {
-					//gap: var(--krds-gap-5);
+				@include size-medium {
 					.krds-btn {
 						&.text {
-							//@include btn-text-variable();
 							@include btn-size(small);
 							padding: 0;
 						}
@@ -242,9 +234,10 @@ $mode-setting: light;
 			}
 			.link-sns {
 				display: flex;
+				flex-wrap: wrap;
 				gap: var(--krds-gap-3);
 				//태블릿 전용 속성
-				@include tablet {
+				@include size-medium-to-large {
 					gap: var(--krds-gap-2);
 				}
 				a {
@@ -260,36 +253,37 @@ $mode-setting: light;
 		gap: var(--krds-gap-9);
 		border-top: var(--krds-#{$mode-setting}-border-width-static-regular) solid var(--krds-#{$mode-setting}-color-divider-gray-light);
 		//모바일 전용
-		@include mobile {
+		@include size-medium {
 			font-size: var(--krds-mobile-font-size-body-small);
 		}
 		.f-btm-text {
 			@include flex-layout($jc: space-between, $ai: center);
 			width: 100%;
 			//모바일 전용
-			@include mobile {
+			@include size-medium {
 				flex-direction: column;
 				align-items: flex-start;
 				width: 100%;
+				gap: var(--krds-gap-6);
 			}
 			.f-menu {
 				display: inline-flex;
 				flex-wrap: wrap;
 				gap: var(--krds-gap-3);
 				//모바일 전용
-				@include mobile {
-					gap: var(--krds-gap-3) var(--krds-gap-7);
+				@include size-medium {
+					gap: var(--krds-gap-3);
 				}
 			}
 			.f-copy {
 				font-size: var(--krds-pc-font-size-body-small);
 				color: var(--krds-#{$mode-setting}-color-text-subtle);
-				@include mobile {
+				@include size-medium {
 					font-size: var(--krds-mobile-font-size-body-small);
 				}
 			}
 		}
-		.f-btm-ban-txt {
+		.krds-identifier-txt {
 			display: flex;
 			align-items: center;
 			font-size: var(--krds-pc-font-size-body-small);
@@ -305,17 +299,14 @@ $mode-setting: light;
 	.footer-banner {
 		background-color: var(--krds-#{$mode-setting}-color-surface-gray-subtle);
 		padding:var(--krds-padding-6) 0;
-		.krds-btn {
-			flex-shrink: 0;
-		}
 		.inner {
 			display:flex;
 			gap: var(--krds-gap-5);
-			@include desktop() {
+			@include size-xlarge {
 				padding-inline: 0;
 			}
 
-			@include mobile(){
+			@include size-medium {
 				flex-direction: column;
 				gap: var(--krds-gap-3);
 			}
@@ -328,7 +319,7 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	#footer {
+	#krds-footer {
 		background-color: var(--krds-#{$mode-setting}-color-surface-gray-subtler);
 		.foot-quick {
 			$quick-border: var(--krds-#{$mode-setting}-color-border-gray-light);
@@ -380,6 +371,15 @@ $mode-setting: light;
 
 		.f-banner {
 			background-color: var(--krds-#{$mode-setting}-color-surface-gray-subtle);
+		}
+
+		//footer 띠배너
+		.footer-banner {
+			background-color: var(--krds-#{$mode-setting}-color-surface-gray-subtle);
+		}
+
+		.f-logo {
+			background-image: url(#{$url}/img/component/icon/ico_logo_krds_high_contrast.svg);
 		}
 	}
 }

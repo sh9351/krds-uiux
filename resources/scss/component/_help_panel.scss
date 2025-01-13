@@ -2,6 +2,7 @@
 //모드 설정
 $mode-setting: light;
 
+//사이즈 정의
 @mixin help-panel-size-variable() {
     --krds-help-panel--pc-width: 39rem;
     --krds-help-panel--mobile-width: calc(100vw - 3rem);
@@ -20,14 +21,18 @@ $mode-setting: light;
     --krds-help-panel--service-title-pc-font-size: var(--krds-pc-font-size-heading-xsmall);
     --krds-help-panel--service-title-mobile-font-size: var(--krds-mobile-font-size-heading-xsmall);
 }
+
+//컬러 정의
 @mixin help-panel-color-variable($mode: light) {
     --krds-help-panel--color-border: var(--krds-#{$mode}-color-border-gray);
     --krds-help-panel--color-background: var(--krds-#{$mode}-color-surface-gray-subtler);
-    --krds-help-panel--shadow: 0 0 0.2rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow2), 0 0.8rem 1.6rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow3);
+    --krds-help-panel--shadow: 0 0 0.2rem 0 var(--krds-#{$mode}-color-alpha-shadow2), 0 0.8rem 1.6rem 0 var(--krds-#{$mode}-color-alpha-shadow3);
     --krds-help-panel--color-text-subtle: var(--krds-#{$mode}-color-text-subtle);
     --krds-help-panel--color-text-bolder: var(--krds-#{$mode}-color-text-bolder);
     --krds-help-panel--service-color-divider: var(--krds-#{$mode}-color-divider-gray-light);
     --krds-help-panel--coach-color-text-primary: var(--krds-#{$mode}-color-text-primary);
+    --krds-help-panel--coach-color-border: var(--krds-#{$mode}-color-divider-gray);
+    --krds-help-panel--coach-color-text: var(--krds-#{$mode}-color-text-basic);
 }
 
 // krds-help-panel
@@ -66,13 +71,17 @@ $mode-setting: light;
             transition: var(--krds-transition-base);
             height: 100%;
         }
-
         .help-conts-area-inner {
             @include flex-layout($fd: column, $jc: space-between);
             gap: var(--krds-gap-8);
             flex: 1;
+            .conts-area {
+				width: 100%;
+                @include flex-layout($ai: flex-start, $jc: flex-start, $fd: column);
+                gap: var(--krds-gap-9);
+            }
         }
-        .tab-area,
+        .krds-tab-area,
         .tab-conts-wrap,
         .tab-conts {
             height: 100%;
@@ -104,6 +113,14 @@ $mode-setting: light;
                 & > button {
                     @include flex-layout($ai: center);
                     gap: var(--krds-gap-2);
+                    &::before {
+                        @include pseudo();
+                        @include svg-icon($size: var(--krds-number-10), $mode: #{$mode-setting});
+                        @include icon-set(ico_angle);
+				        transform: rotate(90deg);
+                        background-color: var(--krds-help-panel--color-text-bolder);
+                        flex-shrink: 0;
+                    }
                 }
                 .krds-btn {
                     &.icon {
@@ -137,7 +154,6 @@ $mode-setting: light;
                         color: var(--krds-help-panel--color-text-subtle);
                     }
                 }
-                // 임시적용
                 .krds-accordion {
                     width: 100%;
                 }
@@ -148,40 +164,28 @@ $mode-setting: light;
                 gap: var(--krds-gap-8);
                 border-top: 1px solid var(--krds-help-panel--service-color-divider);
                 transition: var(--krds-transition-base);
-                .conts-wrap {
-                    gap: var(--krds-gap-4);
-                }
             }
         }
     }
 
-    // 따라하기 패널 컨텐츠 임시
+    // 따라하기 패널 컨텐츠
     .coach-help-process {
         @include flex-layout($ai: stretch, $fd: column);
-        gap: var(--krds-number-14);
+        gap: var(--krds-gap-9);
         width: 100%;
         > li {
             + li {
-                padding-top: var(--krds-number-14);
-                border-top: 0.1rem solid var(--krds-light-gray-30);
+                padding-top: var(--krds-gap-9);
+                border-top: 0.1rem solid var(--krds-help-panel--coach-color-border);
             }
         }
         .tit {
             display: flex;
-            gap: var(--krds-number-5);
-            margin-bottom: var(--krds-number-10);
+            margin-bottom: var(--krds-gap-5);
             font-size: var(--krds-pc-font-size-body-large);
-            color: var(--krds-light-gray-90);
+            color: var(--krds-help-panel--coach-color-text);
             &.current {
                 color: var(--krds-help-panel--coach-color-text-primary);
-                &::before {
-                    @include pseudo();
-                    @include svg-icon($size: var(--krds-number-9), $mode: #{$mode-setting});
-                    @include icon-set(ico_step_active);
-                    background-color: var(--krds-help-panel--coach-color-text-primary);
-                    flex-shrink: 0;
-                    margin-top: 0.4rem;
-                }
             }
         }
     }
@@ -221,10 +225,15 @@ $mode-setting: light;
     .krds-help-panel {
         @include help-panel-color-variable(#{$mode-setting});
     }
+
+    // 도움말 패널 펼치고 닫는 버튼
+    .btn-help-panel {
+        background-color: var(--krds-#{$mode-setting}-color-background-white) !important;
+    }
 }
 
 //responsive tabletMore
-@include tabletMore {
+@include size-large-more {
     .krds-help-panel {
         .help-panel-wrap {
             .help-conts-area {
@@ -235,7 +244,7 @@ $mode-setting: light;
 }
 
 //responsive tabletLess
-@include tabletLess {
+@include size-large-less {
     .krds-help-panel {
         position: fixed;
         z-index: 71;
@@ -269,8 +278,6 @@ $mode-setting: light;
 				// 타이틀
 				.help-title {
 					font-size: var(--krds-help-panel--title-mobile-font-size);
-					.krds-btn {
-					}
 					+ .link-list{
 						margin-top: var(--krds-help-panel--mobile-gap-title-link-list);
 					}

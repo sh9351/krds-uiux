@@ -54,7 +54,7 @@
 			--krds-structured-list--#{$target}-#{$type}: #{$value};
 		}
 	}
-	@include mobile() {
+	@include size-medium {
 		--krds-structured-list--wrap-gap: var(--krds-gap-5);
 		--krds-structured-list--list-gap: var(--krds-gap-4);
 		--krds-structured-list--list-padding-medium-size: var(--krds-padding-8);
@@ -72,7 +72,7 @@
 		.card-body {
 			.c-tit {
 				font-size: var(--krds-structured-list--card-body-title-pc-font-size-#{$unit});
-				@include mobile {
+				@include size-medium {
 					font-size: var(--krds-structured-list--card-body-title-mobile-font-size-#{$unit});
 				}
 			}
@@ -81,7 +81,7 @@
 		.card-body {
 			.c-tit {
 				font-size: var(--krds-structured-list--card-body-title-pc-font-size);
-				@include mobile {
+				@include size-medium {
 					font-size: var(--krds-structured-list--card-body-title-mobile-font-size);
 				}
 			}
@@ -126,16 +126,15 @@
 
 //모드 설정
 $mode-setting: light;
-.structured-list {
+.krds-structured-list {
+	@include structured-list-color-variable(#{$mode-setting});
 	@include structured-list-size-variable();
 
-
-
-	@include structured-list-color-variable(#{$mode-setting});
-
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: var(--krds-structured-list--wrap-gap);
+	& {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: var(--krds-structured-list--wrap-gap);
+	}
 
 	//checkbox 형태시 하단 버튼 위치
 	&.type-check {
@@ -150,7 +149,6 @@ $mode-setting: light;
 		@include flex-layout($fd: column, $ai: normal);
 		gap: var(--krds-structured-list--list-gap) 0;
 		background: var(--krds-structured-list--list-color-surface);
-		// overflow-x: auto;
 		border-radius: var(--krds-structured-list--list-radius);
 		border: var(--krds-structured-list--border-width) solid var(--krds-structured-list--list-color-border);
 		&.is-check {
@@ -166,15 +164,16 @@ $mode-setting: light;
 	}
 
 	&:not(.type-full) {
-		.chk-area:first-child,
+		.krds-check-area:first-child,
 		.card-top:first-child  {
 			margin-bottom: var(--krds-structured-list--list-first-element-margin);
 		}
 	}
 	//체크박스
-	.chk-area {
-		font-size:0;
-		.form-check input[type=checkbox] ~ label {
+	.krds-check-area {
+		padding-top: 0.4rem;
+		font-size: 0;
+		.krds-form-check input[type=checkbox] ~ label {
 			&::before {
 				margin-top:0;
 			}
@@ -196,7 +195,9 @@ $mode-setting: light;
 			gap: var(--krds-structured-list--card-body-cont-gap);
 			word-break: break-all;
 			&:hover {
-				text-decoration: underline;
+				.c-tit {
+					@include underline(0.5rem);
+				}
 			}
 			.c-tit {
 				@include flex-layout($ai: center);
@@ -249,7 +250,7 @@ $mode-setting: light;
 			color: var(--krds-structured-list--tag-color-text);
 			border-radius: var(--krds-structured-list--tag-radius);
 			border: var(--krds-structured-list--border-width) solid var(--krds-structured-list--tag-color-border);
-			@include mobile {
+			@include size-medium {
 				font-size: var(--krds-structured-list--tag-mobile-font-size);
 			}
 			&::before {
@@ -307,7 +308,7 @@ $mode-setting: light;
 			.in {
 				position: relative;
 			}
-			.chk-area {
+			.krds-check-area {
 				margin:0;
 			}
 		}
@@ -378,8 +379,8 @@ $mode-setting: light;
 }
 
 //태블릿 전용 속성
-@include tablet {
-	.structured-list {
+@include size-medium-to-large {
+	.krds-structured-list {
 		--krds-structured-list--card-buttons-gap: var(--krds-number-3);
 
 		grid-template-columns: 1fr 1fr;
@@ -391,11 +392,11 @@ $mode-setting: light;
 }
 
 //모바일 전용  
-@include mobile {
-	.structured-list {
+@include size-medium {
+	.krds-structured-list {
 		grid-template-columns: 1fr;
 
-		.chk-area:first-child,
+		.krds-check-area:first-child,
 		.card-top:first-child  {
 			margin-bottom: var(--krds-structured-list--list-first-element-margin);
 		}
@@ -407,7 +408,7 @@ $mode-setting: light;
 				flex-direction: row;
 				flex-wrap: wrap;
 			}
-			.chk-area{
+			.krds-check-area{
 				order: -1;
 				width: 100%;
 			}
@@ -461,9 +462,6 @@ $mode-setting: light;
 				.c-txt-ul {
 					gap: var(--krds-structured-list--full-card-body-meta-gap-y);
 				}
-				.c-text {
-					// @include ellipsis(3);
-				}
 			}
 		}
 
@@ -481,8 +479,20 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	.structured-list {
+	.krds-structured-list {
 		@include structured-list-color-variable(#{$mode-setting});
+
+		//체크박스
+		.krds-check-area {
+			.krds-form-check input[type=checkbox] ~ label {
+				&::before {
+					margin-top:0;
+				}
+				&::after {
+					margin-top:-.3rem;
+				}
+			}
+		}
 
 		.card-body {
 			.c-text {

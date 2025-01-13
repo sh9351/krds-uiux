@@ -1,5 +1,5 @@
 /* 배지 */
-// 배지 사이즈 정의
+//사이즈 정의
 @mixin badge-size-variable() {
     --krds-badge--size-height: var(--krds-size-height-4);
     --krds-badge--line-height: 2.4rem;
@@ -15,7 +15,7 @@
     --krds-badge--mobile-font-size-large: var(--krds-mobile-font-size-label-medium);
     --krds-badge--size-height-large: var(--krds-size-height-5);
 }
-// 배지 컬러 정의
+//컬러 정의
 @mixin badge-color-variable($mode) {
     //컬러 변수 배열 생성
    $badge-color-variable: (
@@ -140,7 +140,7 @@ $mode-setting: light;
         padding: 0 var(--krds-badge--padding);
         border-radius: var(--krds-badge--radius);
 
-        @include mobile {
+        @include size-medium {
             font-size: var(--krds-badge--mobile-font-size);
         }
     }
@@ -148,7 +148,7 @@ $mode-setting: light;
     &.large {
         height:var(--krds-badge--size-height-large);
         font-size:var(--krds-badge--pc-font-size-large);
-        @include mobile {
+        @include size-medium {
             font-size: var(--krds-badge--mobile-font-size);
         }
     }
@@ -157,13 +157,13 @@ $mode-setting: light;
         border-radius: var(--krds-badge--radius-max);
     }  
     &.dot {
-        @include foursquare(var(--krds-badge--dot-size));        
+        @include square(var(--krds-badge--dot-size));
         padding:var(--krds-badge--dot-padding);
         border-radius: var(--krds-badge--radius-max);
     }
 }
 .krds-badge-wrap {
-    --krds-badge--wrap-gap: var(--krds-gap-3); //임시적용
+    --krds-badge--wrap-gap: var(--krds-gap-3);
 
     display: flex;
     gap: var(--krds-badge--wrap-gap);

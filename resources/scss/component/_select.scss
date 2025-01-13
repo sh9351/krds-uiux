@@ -1,4 +1,4 @@
-/* select style */
+/* 셀렉트 */
 //사이즈 정의
 @mixin form-select-size-variable() {
 	$form-select-size: (
@@ -76,27 +76,29 @@
 	background-size: var(--krds-form-select--icon-size-#{$unit}) !important;
 	border-radius: var(--krds-form-select--radius-#{$unit});
 	font-size: var(--krds-form-select--pc-font-size-#{$unit});
-	@include mobile {
+	@include size-medium {
 		font-size: var(--krds-form-select--mobile-font-size-#{$unit});
 	}
 }
 //모드 설정
 $mode-setting: light;
 
-.form-select {
-	@include form-select-size-variable();
+.krds-form-select {
 	@include form-select-color-variable(#{$mode-setting});
+	@include form-select-size-variable();
 
-	position: relative;
-	width: 100%;
-	@include icon-set(ico_angle, $effect: pure);
-	background-color: var(--krds-form-select--color-background) !important;
-	@include border-size-mode(#{$mode-setting});
-	border-style: solid;
-	border-color: var(--krds-form-select--color-border);
-	font-family: inherit;
-	color: var(--krds-form-select--color-text);
-	transition: var(--krds-transition-base);
+	& {
+		position: relative;
+		width: 100%;
+		@include icon-set(ico_angle, $effect: pure);
+		background-color: var(--krds-form-select--color-background) !important;
+		@include border-size-mode(#{$mode-setting});
+		border-style: solid;
+		border-color: var(--krds-form-select--color-border);
+		font-family: inherit;
+		color: var(--krds-form-select--color-text);
+		transition: var(--krds-transition-base);
+	}
 	&:focus {
 		border-color: var(--krds-form-select--color-border-active);
 		border-width: 2px;
@@ -120,7 +122,7 @@ $mode-setting: light;
 }
 
 .is-error {
-	.form-select {
+	.krds-form-select {
 		border-color: var(--krds-light-color-text-point);
 		border-width: 2px;
 	}
@@ -129,7 +131,7 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	.form-select {
+	.krds-form-select {
 		@include form-select-color-variable(#{$mode-setting});
 
 		@include border-size-mode(#{$mode-setting});
@@ -181,11 +183,11 @@ $form-select-sorting-size: (
 	@if ($unit == 'large') {
 		font-weight: var(--krds-font-weight-bold);
 	}
-	@include mobile {
+	@include size-medium {
 		font-size: var(--krds-form-select-sorting--mobile-font-size-#{$unit});
 	}
 }
-.sort-select {
+.krds-form-select-sort {
 	@include form-select-sorting-color-variable($mode: #{$mode-setting});
 
 	--krds-form-select-sorting--padding-left: var(--krds-padding-2);
@@ -225,7 +227,7 @@ $form-select-sorting-size: (
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	.sort-select {
+	.krds-form-select-sort {
 		@include form-select-sorting-color-variable($mode: #{$mode-setting});
 		@include icon-set(ico_angle_inverse, $effect: pure);
 		background-color: var(--krds-form-select-sorting--color-background) !important;

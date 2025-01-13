@@ -71,9 +71,6 @@ $mode-setting: light;
 			width: 100%;
 			padding: var(--krds-padding-3) 0;
 			border-top: 0.1rem solid var(--krds-dropdown--menu-color-border);
-			.krds-btn {
-				flex: 1;
-			}
 		}
 		.drop-list {
 			width: 100%;
@@ -86,7 +83,7 @@ $mode-setting: light;
 				border-radius: var(--krds-dropdown--list-item-radius);
 				height: var(--krds-dropdown--list-item-height);
 				background-color: var(--krds-dropdown--menu-color-surface);
-				@include mobile() {
+				@include size-medium {
 					font-size: var(--krds-dropdown--list-item-mobile-font-size);
 				}
 				.ico-go {

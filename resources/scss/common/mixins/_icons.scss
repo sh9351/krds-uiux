@@ -19,12 +19,12 @@
 	mask-repeat: no-repeat;
 	mask-position: center center;
 	mask-size: contain;
-	-webkit-mask-image: url(#{$url}/component/icon/#{$name}.svg);
-	mask-image: url(#{$url}/component/icon/#{$name}.svg);
+	-webkit-mask-image: url(#{$url}/img/component/icon/#{$name}.svg);
+	mask-image: url(#{$url}/img/component/icon/#{$name}.svg);
 	@if ($effect == 'pure') { //mask 효과 없이 디자인된 svg 그대로 사용
 		-webkit-mask-image: none;
 		mask-image: none;
-		background-image: url(#{$url}/component/icon/#{$name}.svg);
+		background-image: url(#{$url}/img/component/icon/#{$name}.svg);
 		background-color: transparent !important;
 		background-size: contain;
 		background-repeat: no-repeat;

@@ -33,7 +33,7 @@ $mode-setting: light;
 		width: fit-content;
 	}
 
-	@include mobile {
+	@include size-medium {
 		flex-direction: column;
 
 		.form-group{
@@ -63,13 +63,13 @@ $mode-setting: light;
 			display: flex;
 			font-size: var(--krds-form-group--label-pc-font-size);
 			width: 100%;
-			@include mobile {
+			@include size-medium {
 				font-size: var(--krds-form-group--label-mobile-font-size);
 			}
 		}
 		&.btn-ico-wrap { //input안에 button 노출
 			position: relative;
-			.form-control {
+			.krds-input {
 				padding-right: var(--krds-form-group--icon-padding-right);
 			}
 			.btn-group,
@@ -89,7 +89,7 @@ $mode-setting: light;
 				display: none;
 				@at-root .form-conts {
 					&[data-delete="true"] {
-						.form-control:not(:placeholder-shown) {
+						.krds-input:not(:placeholder-shown) {
 							~.btn-delete-input {
 								display: flex;
 							}
@@ -103,7 +103,7 @@ $mode-setting: light;
 				}
 			}
 		}
-		&.datepicker-conts {
+		&.calendar-conts {
 			gap: 0;
 		}
 	}
@@ -118,7 +118,7 @@ $mode-setting: light;
 		width: 100%;
 		font-size: var(--krds-form-group--message-pc-font-size);
 		color: var(--krds-form-group--message-text-color);
-		@include mobile {
+		@include size-medium {
 			font-size: var(--krds-form-group--message-mobile-font-size);
 		}
 		&::before {
@@ -154,7 +154,7 @@ $mode-setting: light;
 }
 
 
-.form-checks-inline {
+.krds-form-checks-inline {
 	display: flex;
 	gap:1.2rem;
 }
@@ -248,12 +248,12 @@ $mode-setting: light;
 		}
 	}
 	.input-group {
-		.form-select {
+		.krds-form-select {
 			width: auto;
 		}
 	}
 	.krds-btn {
-		&.ico-sch1 {
+		&.ico-sch-plus {
 			&::before {
 				@include square(var(--krds-size-height-4));				
 			}
@@ -263,7 +263,7 @@ $mode-setting: light;
 .sch-input {
 	display: flex;
 	position: relative;
-	.form-control {
+	.krds-input {
 		padding: 0 var(--krds-size-height-7) 0 var(--krds-padding-6);
 		&.xlarge {
 			font-weight: var(--krds-font-weight-bold);
@@ -278,17 +278,8 @@ $mode-setting: light;
 	}
 }
 
-//error
-/*.is-error {
-	.form-control {
-		border-color: var(--krds-point);
-		border-width: 2px;
-	}
-}*/
-
-
 //모바일 전용
-@include mobile {
+@include size-medium {
 	.form-group {
 		.form-conts {
 			&.keyword-sch {
@@ -303,7 +294,7 @@ $mode-setting: light;
 		align-items: flex-start;
 	}
 	.sch-input {
-		.form-control {
+		.krds-input {
 			&.xlg {
 				padding: 0 var(--krds-number-16) 0 var(--krds-number-8);
 				~ .ico-search {

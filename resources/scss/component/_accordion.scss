@@ -1,5 +1,5 @@
-/* accordion style */
-//size variable
+/* 아코디언 */
+//사이즈 정의
 @mixin accordion-size-variable() {
 	--krds-accordion--list-margin-y: var(--krds-padding-2);
 	--krds-accordion--padding: var(--krds-padding-8);
@@ -12,7 +12,7 @@
 	--krds-accordion--button-mobile-font-size: var(--krds-mobile-font-size-heading-xsmall);
 }
 
-//color variable
+//컬러 정의
 @mixin accordion-color-variable($mode: light) {
 	--krds-accordion--color-action: var(--krds-#{$mode}-color-action-secondary);
 	--krds-accordion--button-color-action: var(--krds-#{$mode}-color-action-secondary);
@@ -23,6 +23,7 @@
 	--krds-accordion--color-divider-open: var(--krds-#{$mode}-color-divider-gray-dark);
 	--krds-accordion--button-color-text: var(--krds-#{$mode}-color-text-basic);
 	--krds-accordion--button-color-text-open: var(--krds-#{$mode}-color-text-secondary);
+	--krds-accordion--color-icon: var(--krds-#{$mode}-color-icon-gray);
 }
 
 //모드 설정
@@ -47,7 +48,7 @@ $mode-setting: light;
 			color: var(--krds-accordion--button-color-text);
 			font-weight: var(--krds-font-weight-bold);
 			text-align: left;
-			@include mobile() {
+			@include size-medium {
 				font-size: var(--krds-accordion--button-mobile-font-size);
 			}
 			&:hover {
@@ -61,6 +62,7 @@ $mode-setting: light;
 				@include pseudo();
 				@include svg-icon(var(--krds-accordion--button-icon-size), $mode: #{$mode-setting});
 				@include icon-set(ico_angle);
+				background-color: var(--krds-accordion--color-icon);
 				transition: var(--krds-transition-base);
 				transform: rotate(0deg);
 			}
@@ -144,7 +146,7 @@ $mode-setting: light;
 
 }
 
-@include mobile() {
+@include size-medium {
 	.krds-accordion{
 		--krds-accordion--padding: var(--krds-padding-6);
 		--krds-accordion--line-padding: var(--krds-padding-5);

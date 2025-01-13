@@ -9,7 +9,7 @@
 	--krds-masthead--mobile-font-size: var(--krds-mobile-font-size-body-small);
 
 	//태블릿 & 모바일 전용 속성
-	@include tabletLess() {
+	@include size-large-less {
 		--krds-masthead--inner-padding-y: 0;
 	}
 }
@@ -22,13 +22,15 @@
 //모드 설정
 $mode-setting: light;
 
-#header-top {
-	@include masthead-size-variable();
+#krds-masthead {
 	@include masthead-color-variable(#{$mode-setting});
+	@include masthead-size-variable();
 
-	position: relative;
-	z-index: 70;
-	background-color: var(--krds-masthead--color-surface);
+	& {
+		position: relative;
+		z-index: 70;
+		background-color: var(--krds-masthead--color-surface);
+	}
 	.toggle-head {
 		.inner {
 			position: relative;
@@ -42,7 +44,7 @@ $mode-setting: light;
 			gap: var(--krds-gap-3);
 			font-size: var(--krds-masthead--pc-font-size);
 			word-break: break-all;
-			@include mobile {
+			@include size-medium {
 				font-size: var(--krds-masthead--mobile-font-size);
 			}
 			&::before {
@@ -69,7 +71,7 @@ $mode-setting: light;
 	//모드 설정
 	$mode-setting: high-contrast;
 
-	#header-top {
+	#krds-masthead {
 		@include masthead-color-variable(#{$mode-setting});
 	}
 }

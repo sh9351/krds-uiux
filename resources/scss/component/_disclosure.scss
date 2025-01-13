@@ -9,7 +9,7 @@
     --krds-disclosure--button-mobile-font-size: var(--krds-mobile-font-size-body-medium);
     --krds-disclosure--pc-expand-padding: var(--krds-pc-padding-card-small);
     --krds-disclosure--mobile-expand-padding: var(--krds-mobile-padding-card-small);
-    --krds-disclosure--expand-margin-top: var(--krds-gap-5);
+    --krds-disclosure--expand-margin-top: var(--krds-gap-2);
     --krds-disclosure--expand-radius: var(--krds-radius-xlarge2);
 
 }
@@ -29,10 +29,11 @@ $mode-setting: light;
 	width: 100%;
 
     & ~ .krds-disclosure {
-        margin-top: var(--krds-disclosure--gap); //pattern 간격 적용(임시)
+        margin-top: var(--krds-disclosure--gap); //pattern 간격 적용
     }
 
     .btn-conts-expand {
+        @include flex-layout($ai: center);
         height: var(--krds-disclosure--button-size-height);
         font-size: var(--krds-disclosure--button-pc-font-size);
         color: var(--krds-disclosure--button-color-text);
@@ -52,6 +53,8 @@ $mode-setting: light;
         }
     }
     .expand-wrap {
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
         max-height: 0;
         &::after {
             display: none;
@@ -64,6 +67,10 @@ $mode-setting: light;
         }
     }
     &.active {
+        .expand-wrap {
+            max-height: 1000vh !important;
+            transition: max-height 1.5s ease-in-out;
+        }
         .btn-conts-expand {
             &::before {
                 transform: rotate(-90deg);
@@ -87,7 +94,7 @@ $mode-setting: light;
     }
 }
 
-@include mobile {
+@include size-medium {
 	.krds-disclosure {
 		.btn-conts-expand {
 			font-size: var(--krds-disclosure--button-mobile-font-size);

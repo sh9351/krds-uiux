@@ -1,5 +1,5 @@
 <!-- header -->
-<header id="header">
+<header id="krds-header">
 	<!-- 헤더 컨텐츠 영역  -->
 	<div class="header-in">
 		<!-- 헤더 상단 기타메뉴 -->
@@ -71,7 +71,7 @@
 				<div class="header-branding">
 					<h2 class="logo">
 						<a href="#">
-							<img src="../../../resources/img/pattern/layout/head_logo.svg" class="logo-im" alt="대한민국정부">
+							<span class="sr-only">KRDS - Korea Design System</span>
 						</a>
 					</h2>
 					<div class="header-actions">
@@ -106,7 +106,7 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn-navi all" id="m-gnb-open">전체메뉴</button>
+						<button type="button" class="btn-navi all" aria-controls="mobile-nav">전체메뉴</button>
 					</div>
 				</div>
 			</div>
@@ -114,13 +114,11 @@
 		<!-- //헤더 상단 기타메뉴 -->
 		
 		<!-- 메인메뉴 : 데스크탑 -->
-		<nav class="krds-gnb">
+		<nav class="krds-main-menu">
 			<div class="inner">
 				<ul class="gnb-menu">
 					<li>
-						<button type="button" class="gnb-main-trigger" data-trigger="gnb">
-							<h2>1Depth</h2>
-						</button>
+						<button type="button" class="gnb-main-trigger" data-trigger="gnb">1Depth</button>
 						<!-- gnb-toggle-wrap -->
 						<div class="gnb-toggle-wrap">
 							<!-- gnb-main-list -->
@@ -131,7 +129,13 @@
 										<!-- gnb-sub-list -->
 										<div class="gnb-sub-list">
 											<div class="gnb-sub-content">
-												<h3 class="sub-title"><span>2Depth title</span></h3>
+												<h2 class="sub-title">
+													2Depth title
+													<a href="#" class="krds-btn link basic small">
+														<span class="underline">바로가기</span>
+														<i class="svg-icon ico-angle right"></i>
+													</a>
+												</h2>
 												<ul>
 													<li><a href="#">Last depth</a></li>
 													<li><button type="button">Last depth</button></li>
@@ -149,9 +153,13 @@
 										<!-- gnb-sub-list -->
 										<div class="gnb-sub-list between">
 											<div class="gnb-sub-content">
-												<h3 class="sub-title">
-													<a href="#">2Depth title <i class="svg-icon ico-page-next"></i></a>
-												</h3>
+												<h2 class="sub-title">
+													2Depth title
+													<a href="#" class="krds-btn link basic small">
+														<span class="underline">바로가기</span>
+														<i class="svg-icon ico-angle right"></i>
+													</a>
+												</h2>
 												<ul>
 													<li><a href="#">Last depth</a></li>
 													<li><button type="button">Last depth</button></li>
@@ -166,22 +174,10 @@
 										<!-- //gnb-sub-list -->
 									</li>
 									<li>
-										<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb" target="_blank" title="새 창 열림">
-											외부사이트 링크(anchor)
-											<i class="svg-icon ico-go"></i>
-										</a>
+										<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb">2Depth</a>
 									</li>
 									<li>
-										<button type="button" class="gnb-sub-trigger is-link" data-trigger="gnb" title="새 창 열림">
-											외부사이트 링크(button)
-											<i class="svg-icon ico-go"></i>
-										</button>
-									</li>
-									<li>
-										<div class="gnb-sub-banner">
-											<span class="krds-badge bg-primary">신규 서비스</span>
-											<button type="button" class="krds-btn large text" data-trigger="gnb">메뉴명 <i class="svg-icon ico-angle right"></i></button>
-										</div>
+										<a href="#" class="gnb-sub-trigger is-link external-link" data-trigger="gnb" target="_blank" title="새 창 열림">2Depth</a>
 									</li>
 								</ul>
 							</div>
@@ -191,9 +187,7 @@
 					</li>
 					
 					<li>
-						<button type="button" class="gnb-main-trigger" data-trigger="gnb">
-							<h2>1Depth</h2>
-						</button>
+						<button type="button" class="gnb-main-trigger" data-trigger="gnb">1Depth</button>
 						<!-- gnb-toggle-wrap -->
 						<div class="gnb-toggle-wrap">
 							<!-- gnb-main-list -->
@@ -204,12 +198,12 @@
 										<!-- gnb-sub-list -->
 										<div class="gnb-sub-list">
 											<div class="gnb-sub-content">
-												<h3 class="sub-title"><span>2Depth title</span></h3>
+												<h2 class="sub-title"><span>2Depth title</span></h2>
 												<ul class="type-description">
 													<li>
-														<h4 class="tit">
-															<a href="#">3Depth title <i class="svg-icon ico-go"></i></a>
-														</h4>
+														<h3 class="tit">
+															<a href="#" target="_blank" title="새 창 열림">3Depth title <i class="svg-icon ico-go"></i></a>
+														</h3>
 														<p class="txt">메뉴명과 메뉴에 관한 간략한 설명이 표시되는 스타일입니다.</p>
 													</li>
 												</ul>
@@ -226,12 +220,12 @@
 										<!-- gnb-sub-list -->
 										<div class="gnb-sub-list between">
 											<div class="gnb-sub-content">
-												<h3 class="sub-title"><span>2Depth title</span></h3>
+												<h2 class="sub-title"><span>2Depth title</span></h2>
 												<ul class="type-description">
 													<li>
-														<h4 class="tit">
-															<a href="#">3Depth title <i class="svg-icon ico-go"></i></a>
-														</h4>
+														<h3 class="tit">
+															<a href="#" target="_blank" title="새 창 열림">3Depth title <i class="svg-icon ico-go"></i></a>
+														</h3>
 														<p class="txt">메뉴명과 메뉴에 관한 간략한 설명이 표시되는 스타일입니다.</p>
 													</li>
 												</ul>
@@ -243,6 +237,12 @@
 										</div>
 										<!-- //gnb-sub-list -->
 									</li>
+									<li>
+										<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb">2Depth</a>
+									</li>
+									<li>
+										<a href="#" class="gnb-sub-trigger is-link external-link" data-trigger="gnb" target="_blank" title="새 창 열림">2Depth</a>
+									</li>
 								</ul>
 							</div>
 							<!-- //gnb-main-list -->
@@ -251,9 +251,7 @@
 					</li>
 					
 					<li>
-						<button type="button" class="gnb-main-trigger" data-trigger="gnb">
-							<h2>1Depth</h2>
-						</button>
+						<button type="button" class="gnb-main-trigger" data-trigger="gnb">1Depth</button>
 						<!-- gnb-toggle-wrap -->
 						<div class="gnb-toggle-wrap">
 							<!-- gnb-main-list -->
@@ -261,8 +259,16 @@
 								<!-- gnb-sub-list -->
 								<div class="gnb-sub-list single-list between">
 									<div class="gnb-sub-content">
-										<h3 class="sub-title"><span>2Depth title</span></h3>
+										<h2 class="sub-title"><span>2Depth title</span></h2>
 										<ul>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
+											<li><a href="#">Last depth</a></li>
 											<li><a href="#">Last depth</a></li>
 										</ul>
 									</div>
@@ -279,14 +285,10 @@
 					</li>
 					
 					<li>
-						<a href="#" class="gnb-main-trigger is-link" data-trigger="gnb">
-							<h2>링크(anchor)</h2>
-						</a>
+						<a href="#" class="gnb-main-trigger is-link" data-trigger="gnb">링크(anchor)</a>
 					</li>
 					<li>
-						<button type="button" class="gnb-main-trigger is-link" data-trigger="gnb">
-							<h2>링크(button)</h2>
-						</button>
+						<button type="button" class="gnb-main-trigger is-link" data-trigger="gnb">링크(anchor)</button>
 					</li>
 				</ul>
 			</div>
@@ -296,7 +298,7 @@
 	<!-- //헤더 컨텐츠 영역  -->
 	
 	<!-- 메인메뉴 : 모바일 -->
-	<div id="mobile-nav" class="krds-gnb-mobile">
+	<div id="mobile-nav" class="krds-main-menu-mobile">
 		<div class="gnb-wrap">
 			<!-- gnb-header -->
 			<div class="gnb-header">
@@ -310,9 +312,9 @@
 				<!-- //gnb-utils -->
 				<!-- gnb-login -->
 				<div class="gnb-login">
-					<span class="user">홍길동님</span>
-					<button type="button" class="krds-btn medium text"><i class="svg-icon ico-logout"></i> 로그아웃</button>
-					<button type="button" class="krds-btn medium text"><i class="svg-icon ico-log"></i> 로그인을 해주세요</button>
+					<!-- <span class="user">홍길동님</span>
+					<button type="button" class="krds-btn large text"><i class="svg-icon ico-logout"></i> 로그아웃</button> -->
+					<button type="button" class="krds-btn large text"><i class="svg-icon ico-log"></i> 로그인을 해주세요</button>
 				</div>
 				<!-- //gnb-login -->
 				<!-- gnb-service-menu -->
@@ -325,7 +327,7 @@
 				<!-- gnb-service-menu -->
 				<!-- 검색 -->
 				<div class="sch-input">
-					<input type="text" class="form-control" placeholder="찾고자 하는 메뉴명을 입력해 주세요" title="찾고자 하는 메뉴명 입력" />
+					<input type="text" class="krds-input" placeholder="찾고자 하는 메뉴명을 입력해 주세요" title="찾고자 하는 메뉴명 입력" />
 					<button type="button" class="krds-btn medium icon ico-search">
 						<span class="sr-only">검색</span>
 						<i class="svg-icon ico-sch"></i>

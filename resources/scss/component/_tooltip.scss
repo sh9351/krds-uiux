@@ -110,7 +110,7 @@ $mode-setting: light;
 }
 
 //responsive mobile
-@include mobile {
+@include size-medium {
 	.krds-tooltip-popover {
 		font-size: var(--krds-tooltip--popover-contents-mobile-font-size);
 	}

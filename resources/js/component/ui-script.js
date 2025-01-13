@@ -87,7 +87,7 @@ const common = {
 /*** * krds_mainMenuPC * ***/
 const krds_mainMenuPC = {
   init() {
-    const gnbMenu = document.querySelector(".krds-gnb:not(.sample) .gnb-menu");
+    const gnbMenu = document.querySelector(".krds-main-menu:not(.sample) .gnb-menu");
 
     if (!gnbMenu) return;
 
@@ -188,11 +188,11 @@ const krds_mainMenuPC = {
     document.body.classList.toggle("hasScrollY", isEnabled && isScrollNeeded);
   },
   resetMainMenu() {
-    document.querySelectorAll(".krds-gnb:not(.sample) .gnb-main-trigger:not(.is-link)").forEach((mainTrigger) => {
+    document.querySelectorAll(".krds-main-menu:not(.sample) .gnb-main-trigger:not(.is-link)").forEach((mainTrigger) => {
       mainTrigger.classList.remove("active");
       mainTrigger.setAttribute("aria-expanded", "false");
     });
-    document.querySelectorAll(".krds-gnb:not(.sample) .gnb-toggle-wrap").forEach((toggleWrap) => {
+    document.querySelectorAll(".krds-main-menu:not(.sample) .gnb-toggle-wrap").forEach((toggleWrap) => {
       toggleWrap.classList.remove("is-open");
     });
   },
@@ -202,9 +202,9 @@ const krds_mainMenuPC = {
     this.toggleScrollbar(false);
   },
   attachEvents(mainTriggers, subTriggers) {
-    // krds-gnb 외부 클릭시 닫기
+    // krds-main-menu 외부 클릭시 닫기
     document.addEventListener("click", ({ target }) => {
-      if (!target.closest(".krds-gnb")) this.closeMainMenu();
+      if (!target.closest(".krds-main-menu")) this.closeMainMenu();
     });
 
     // 백드롭 클릭 시 메뉴 닫기
@@ -212,7 +212,7 @@ const krds_mainMenuPC = {
 
     // ESC 키를 눌러 메뉴를 닫거나, TAB 키로 초점이 메뉴 외부로 이동했을 때 메뉴 닫기
     document.addEventListener("keyup", (event) => {
-      if (event.code === "Escape" || !event.target.closest(".krds-gnb")) {
+      if (event.code === "Escape" || !event.target.closest(".krds-main-menu")) {
         this.closeMainMenu();
       }
     });
@@ -274,7 +274,7 @@ const krds_mainMenuPC = {
 /*** * krds_mainMenuMobile * ***/
 const krds_mainMenuMobile = {
   init() {
-    const mobileGnb = document.querySelector(".krds-gnb-mobile:not(.sample)");
+    const mobileGnb = document.querySelector(".krds-main-menu-mobile:not(.sample)");
 
     if (!mobileGnb) return;
 
@@ -308,6 +308,19 @@ const krds_mainMenuMobile = {
         item.setAttribute("aria-selected", "false");
         item.setAttribute("aria-controls", item.getAttribute("href").substring(1));
         item.setAttribute("id", `tab-${idx}`);
+
+        // gnb-main-trigger 클릭시 해당 위치로 스크롤
+        item.addEventListener("click", (event) => {
+          event.preventDefault();
+          const id = item.getAttribute("aria-controls");
+          const top = document.getElementById(id).offsetTop
+          const gnbBody = document.querySelector(".gnb-body");
+          gnbBody.scrollTo({
+            left: 0,
+            top: top,
+            behavior: "smooth",
+          });
+        })
       });
 
       const tabPanels = document.querySelectorAll(".submenu-wrap .gnb-sub-list");
@@ -337,12 +350,22 @@ const krds_mainMenuMobile = {
     const navContainer = mobileGnb.querySelector(".gnb-wrap");
     // const id = mobileGnb.getAttribute("id");
     // const openGnb = document.querySelector(`[aria-controls=${id}]`);
-    // const header = document.querySelector("#header");
+    // const header = document.querySelector("#krds-header");
 
     mobileGnb.style.display = "block";
     navContainer.setAttribute("tabindex", 0);
     // openGnb.setAttribute("aria-expanded", "true");
     // header.style.zIndex = "1000";
+
+    // active 메뉴로 스크롤 이동
+    const activeTrigger = document.querySelector(".gnb-main-trigger.active");
+    if (activeTrigger) {
+      const id = activeTrigger.getAttribute("aria-controls");
+      const top = document.getElementById(id).offsetTop;
+      const gnbBody = document.querySelector(".gnb-body");
+      gnbBody.style.scrollBehavior = "auto";
+      gnbBody.scrollTop = top
+    } 
     
     setTimeout(() => {
       mobileGnb.classList.add("is-backdrop");
@@ -356,9 +379,9 @@ const krds_mainMenuMobile = {
       mobileGnb.removeEventListener("transitionend", onTransitionEnd);
 
       // inert 설정
-      document.querySelector("#header .header-in").setAttribute("inert", "");
-      document.getElementById("container").setAttribute("inert", "");
-      document.getElementById("footer").setAttribute("inert", "");
+      document.querySelector("#krds-header .header-in").setAttribute("inert", "");
+      document.getElementById("container")?.setAttribute("inert", "");
+      document.getElementById("footer")?.setAttribute("inert", "");
       
       // 포커스 트랩 설정
       common.focusTrap(mobileGnb);
@@ -368,7 +391,7 @@ const krds_mainMenuMobile = {
   closeMainMenu(mobileGnb) {
     const id = mobileGnb.getAttribute("id");
     const openGnb = document.querySelector(`[aria-controls=${id}]`);
-    // const header = document.querySelector("#header");
+    // const header = document.querySelector("#krds-header");
 
     mobileGnb.classList.remove("is-backdrop");
     mobileGnb.classList.remove("is-open");
@@ -376,9 +399,9 @@ const krds_mainMenuMobile = {
     // header.style.zIndex = "";
 
     // inert 설정
-    document.querySelector("#header .header-in").removeAttribute("inert");
-    document.getElementById("container").removeAttribute("inert");
-    document.getElementById("footer").removeAttribute("inert");
+    document.querySelector("#krds-header .header-in").removeAttribute("inert");
+    document.getElementById("container")?.removeAttribute("inert");
+    document.getElementById("footer")?.removeAttribute("inert");
     
     // transition 종료후 실행
     mobileGnb.addEventListener("transitionend", function onTransitionEnd() {
@@ -532,7 +555,7 @@ const krds_mainMenuMobile = {
     common.focusTrap(target);
   },
   resetAnchorMenu() {
-    document.querySelectorAll(".krds-gnb-mobile .menu-wrap .gnb-main-trigger").forEach((menu) => {
+    document.querySelectorAll(".krds-main-menu-mobile .menu-wrap .gnb-main-trigger").forEach((menu) => {
       menu.classList.remove("active");
       menu.setAttribute("aria-selected", "false");
     });
@@ -547,7 +570,7 @@ const krds_sideNavigation = {
     this.setupPopupEvents();
   },
   setupSideNavLists() {
-    const sideNavLists = document.querySelectorAll(".krds-lnb .lnb-list");
+    const sideNavLists = document.querySelectorAll(".krds-side-navigation .lnb-list");
     sideNavLists.forEach((navList) => {
       const navItems = navList.querySelectorAll("li");
       navItems.forEach((navItem) => this.setupNavItem(navItem));
@@ -574,7 +597,7 @@ const krds_sideNavigation = {
     }
   },
   setupToggleEvents() {
-    const toggleButtons = document.querySelectorAll(".krds-lnb .lnb-list:not(.exception-case) .lnb-toggle");
+    const toggleButtons = document.querySelectorAll(".krds-side-navigation .lnb-list:not(.exception-case) .lnb-toggle");
     toggleButtons.forEach((toggleButton) => {
       toggleButton.addEventListener("click", () => {
         const expand = toggleButton.getAttribute("aria-expanded") !== "true";
@@ -655,7 +678,7 @@ const krds_sideNavigation = {
   setActiveCurrentPage() {
     // 활성화된 페이지를 찾는 예(개발 환경에 맞게 수정)
     const currentPage = window.location.pathname.split("/").slice(-1)[0].replace(".html", "");
-    const lnbLinks = document.querySelectorAll(".krds-lnb .lnb-link");
+    const lnbLinks = document.querySelectorAll(".krds-side-navigation .lnb-link");
     lnbLinks.forEach((link) => {
       const linkPage = link.getAttribute("href").split("/").pop().replace(".html", "");
       if (linkPage === currentPage) {
@@ -674,7 +697,7 @@ const krds_sideNavigation = {
 const krds_tab = {
   layerTabArea: null,
   init() {
-    this.layerTabArea = document.querySelectorAll(".tab-area.layer");
+    this.layerTabArea = document.querySelectorAll(".krds-tab-area.layer");
 
     if (!this.layerTabArea.length) return;
 
@@ -707,8 +730,8 @@ const krds_tab = {
 
           // 클릭 이벤트
           tab.addEventListener("click", () => {
-            const closestTabs = tab.closest(".tab-area.layer > .tab").querySelectorAll("li");
-            const closestTabPanels = tab.closest(".tab-area.layer").querySelectorAll(":scope > .tab-conts-wrap > .tab-conts");
+            const closestTabs = tab.closest(".krds-tab-area.layer > .tab").querySelectorAll("li");
+            const closestTabPanels = tab.closest(".krds-tab-area.layer").querySelectorAll(":scope > .tab-conts-wrap > .tab-conts");
 
             this.resetTabs(closestTabs, closestTabPanels);
 
@@ -762,12 +785,29 @@ const krds_tab = {
 /*** * krds_accordion * ***/
 const krds_accordion = {
   accordionButtons: null,
+  accordionHandlers: new Map(),
   init() {
     this.accordionButtons = document.querySelectorAll(".btn-accordion");
 
     if (!this.accordionButtons.length) return;
 
     this.setupAccordions();
+  },
+  accordionToggle(button, accordionItems, accordionType, currentItem) {
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    // singleOpen 타입일 경우, 다른 항목 닫기
+    if (accordionType !== "multiOpen" && !currentItem.classList.contains("active")) {
+      accordionItems.forEach((otherItem) => {
+        const otherButton = otherItem.querySelector(".btn-accordion");
+        otherButton.setAttribute("aria-expanded", "false");
+        otherButton.classList.remove("active");
+        otherItem.classList.remove("active");
+      });
+    }
+    // 현재 항목 상태 토글
+    button.setAttribute("aria-expanded", !isExpanded);
+    button.classList.toggle("active", !isExpanded);
+    currentItem.classList.toggle("active", !isExpanded);
   },
   setupAccordions() {
     this.accordionButtons.forEach((button, idx) => {
@@ -788,21 +828,16 @@ const krds_accordion = {
         currentItem.classList.add("active");
       }
 
-      // accordionButton 이벤트
-      button.addEventListener("click", () => {
-        const isExpanded = button.getAttribute("aria-expanded") === "true";
-        if (accordionType !== "multiOpen" && !currentItem.classList.contains("active")) {
-          accordionItems.forEach((otherItem) => {
-            const otherButton = otherItem.querySelector(".btn-accordion");
-            otherButton.setAttribute("aria-expanded", "false");
-            otherButton.classList.remove("active");
-            otherItem.classList.remove("active");
-          });
-        }
-        button.setAttribute("aria-expanded", !isExpanded);
-        button.classList.toggle("active", !isExpanded);
-        currentItem.classList.toggle("active", !isExpanded);
-      });
+      // 핸들러 고정 및 저장
+      let toggleHandler = this.accordionHandlers.get(button);
+      if (!toggleHandler) {
+        toggleHandler = this.accordionToggle.bind(this, button, accordionItems, accordionType, currentItem);
+        this.accordionHandlers.set(button, toggleHandler);
+      }
+
+      // 기존 이벤트 리스너 제거 및 새로 등록
+      button.removeEventListener("click", toggleHandler);
+      button.addEventListener("click", toggleHandler);
     });
   },
   setupAriaAttributes(button, accordionContent, idx) {
@@ -850,7 +885,7 @@ const krds_modal = {
     this.modalCloseTriggers.forEach((trigger) => {
       trigger.addEventListener("click", (event) => {
         event.preventDefault();
-        const modalId = trigger.closest(".modal").getAttribute("id");
+        const modalId = trigger.closest(".krds-modal").getAttribute("id");
 
         if (modalId) {
           this.closeModal(modalId);
@@ -862,7 +897,7 @@ const krds_modal = {
     const modalElement = document.getElementById(id);
     const dialogElement = modalElement.querySelector(".modal-content");
     const modalBack = modalElement.querySelector(".modal-back");
-    const modalTitle = modalElement.querySelector(".modal-title");
+    // const modalTitle = modalElement.querySelector(".modal-title");
     const modalConts = modalElement.querySelector(".modal-conts");
 
     document.querySelector("body").classList.add("scroll-no");
@@ -870,7 +905,7 @@ const krds_modal = {
     modalElement.setAttribute("role", "dialog");
     modalElement.classList.add("shown");
     modalBack.classList.add("in");
-    modalTitle.setAttribute("tabindex", "0");
+    // modalTitle.setAttribute("tabindex", "0");
 
     // modal-conts 스크롤 일때 tabindex 처리
     if (modalConts.scrollHeight > modalConts.clientHeight) {
@@ -885,10 +920,10 @@ const krds_modal = {
     }, 150);
     
     //열린 팝업창 포커스
-    // const focusables = modalElement.querySelectorAll(`a, button, [tabindex="0"], input, textarea, select`);
+    const focusables = modalElement.querySelectorAll(`a, button, [tabindex="0"], input, textarea, select`);
     setTimeout(() => {
-      modalTitle.focus();
-      // focusables[0].focus();
+      // modalTitle.focus();
+      focusables[0].focus();
     }, 350);
 
     // ESC 모달 닫기
@@ -896,7 +931,7 @@ const krds_modal = {
       "keydown",
       (event) => {
         if (event.key === "Escape" || event.key === "Esc") {
-          this.closeModal(dialogElement.closest(".modal").id);
+          this.closeModal(dialogElement.closest(".krds-modal").id);
         }
       },
       { once: true }
@@ -906,7 +941,9 @@ const krds_modal = {
     if (!this.outsideClickHandlers[id]) {
       this.outsideClickHandlers[id] = (event) => {
         if (!event.target.closest(".modal-content")) {
-          modalTitle.focus();
+          // modalTitle.focus();
+          focusables[0].focus();
+
           // dialogElement.focus();
           // this.closeModal(id);
         }
@@ -923,7 +960,7 @@ const krds_modal = {
     this.updateZIndex(modalElement);
 
     // inert 설정
-    document.getElementById("wrap").setAttribute("inert", "");
+    document.getElementById("wrap")?.setAttribute("inert", "");
   },
   closeModal(id) {
     const modalElement = document.getElementById(id);
@@ -944,7 +981,7 @@ const krds_modal = {
     }
     
     // inert 설정
-    document.getElementById("wrap").removeAttribute("inert");
+    document.getElementById("wrap")?.removeAttribute("inert");
 
     // 모달을 열었던 버튼으로 포커스 복귀
     this.returnFocusToTrigger(id);
@@ -1020,8 +1057,8 @@ const krds_contextualHelp = {
 
     if (!isVisible) {
       tooltipPopover.style.display = "block";
-      tooltipPopover.setAttribute("tabindex", 0);
-      tooltipPopover.focus();
+      const focusables = tooltipPopover.querySelector(`a, button, [tabindex="0"], input, textarea, select`);
+      focusables?.focus();
       button.setAttribute("aria-expanded", "true");
 
       this.adjustTooltipPosition(tooltipContainer, tooltipPopover);
@@ -1232,7 +1269,7 @@ const krds_calendar = {
   datePickerArea: null,
   activeDateSelector: null,
   init() {
-    this.datePickerArea = document.querySelectorAll(".krds-datepicker-area");
+    this.datePickerArea = document.querySelectorAll(".krds-calendar-area");
 
     if (!this.datePickerArea.length) return;
 
@@ -1248,10 +1285,10 @@ const krds_calendar = {
   },
   setupDatePicker() {
     this.datePickerArea.forEach((datePicker) => {
-      datePicker.querySelector(".datepicker-wrap").setAttribute("tabindex", "0");
+      datePicker.querySelector(".calendar-wrap").setAttribute("tabindex", "0");
 
       // 접근성 초기값 설정
-      datePicker.querySelectorAll(".datepicker-tbl td").forEach((cell) => {
+      datePicker.querySelectorAll(".calendar-tbl td").forEach((cell) => {
         const dateButton = cell.querySelector(".btn-set-date");
         if (!dateButton) return;
         if (cell.classList.contains("period")) {
@@ -1268,7 +1305,7 @@ const krds_calendar = {
   },
   setupGlobalListeners() {
     document.addEventListener("click", (event) => {
-      if (!event.target.closest(".datepicker-conts")) {
+      if (!event.target.closest(".calendar-conts")) {
         this.closeAllDatePickers();
       }
     });
@@ -1282,13 +1319,13 @@ const krds_calendar = {
     // 탭 이동 닫기
     this.datePickerArea.forEach((datePicker) => {
       // 마지막 버튼이 blur될 때 datepicker 닫기(포커스 트랩을 사용하지 않을때 적용)
-      // const lastActionButton = datePicker.querySelector(".datepicker-btn-wrap .krds-btn:last-child");
+      // const lastActionButton = datePicker.querySelector(".calendar-btn-wrap .krds-btn:last-child");
       // if (lastActionButton) {
       //   lastActionButton.addEventListener("blur", () => this.closeAllDatePickers());
       // }
 
-      // datepicker-select의 마지막 버튼이 blur될 때 선택기 닫기
-      datePicker.querySelectorAll(".datepicker-select").forEach((select) => {
+      // calendar-select의 마지막 버튼이 blur될 때 선택기 닫기
+      datePicker.querySelectorAll(".calendar-select").forEach((select) => {
         const lastSelectButton = select.querySelector(".sel > li:last-child > button");
         if (lastSelectButton) {
           lastSelectButton.addEventListener("blur", () => {
@@ -1302,7 +1339,7 @@ const krds_calendar = {
     // 열려있던 달력 모두 닫기
     this.closeAllDatePickers();
 
-    const currentDatePicker = button.closest(".datepicker-conts").querySelector(".krds-datepicker-area");
+    const currentDatePicker = button.closest(".calendar-conts").querySelector(".krds-calendar-area");
     currentDatePicker.classList.add("active");
 
     // 접근성
@@ -1313,12 +1350,12 @@ const krds_calendar = {
 
     // 포커스 이동
     setTimeout(() => {
-      currentDatePicker.querySelector(".datepicker-wrap").focus();
+      currentDatePicker.querySelector(".calendar-wrap").focus();
     }, 50);
   },
   resetDateSelector() {
     this.datePickerArea.forEach((datePicker) => {
-      const selectMenus = datePicker.querySelectorAll(".datepicker-select");
+      const selectMenus = datePicker.querySelectorAll(".calendar-select");
       selectMenus.forEach((select) => select.classList.remove("active"));
       this.setupDateComboBox("reset");
       this.activeDateSelector = null;
@@ -1327,7 +1364,7 @@ const krds_calendar = {
   closeAllDatePickers() {
     this.datePickerArea.forEach((datePicker) => {
       if (datePicker.classList.contains("active")) {
-        const target = datePicker.closest(".datepicker-conts").querySelector(".form-btn-datepicker");
+        const target = datePicker.closest(".calendar-conts").querySelector(".form-btn-datepicker");
         target.focus();
       }
       datePicker.classList.remove("active");
@@ -1341,7 +1378,7 @@ const krds_calendar = {
     });
   },
   setupDateComboBox(option, target) {
-    const comboBoxs = document.querySelectorAll(".datepicker-drop-down > button");
+    const comboBoxs = document.querySelectorAll(".calendar-drop-down > button");
     if (option === "init") {
       comboBoxs.forEach((comboBox, idx) => {
         const listBox = comboBox.nextElementSibling.querySelector(".sel");
@@ -1390,7 +1427,7 @@ const krds_calendar = {
       if (target) {
         target.setAttribute("aria-selected", "true");
         target.classList.add("active");
-        target.closest(".datepicker-drop-down").querySelector("button").innerHTML = target.innerHTML;
+        target.closest(".calendar-drop-down").querySelector("button").innerHTML = target.innerHTML;
       }
 
       // ui 동작 확인용 테스트 코드
@@ -1399,8 +1436,8 @@ const krds_calendar = {
   },
   toggleDateSelector() {
     this.datePickerArea.forEach((datePicker) => {
-      const selectToggleButtons = datePicker.querySelectorAll(".datepicker-drop-down .btn-cal-switch");
-      const selectOptions = datePicker.querySelectorAll(".datepicker-select .sel button");
+      const selectToggleButtons = datePicker.querySelectorAll(".calendar-drop-down .btn-cal-switch");
+      const selectOptions = datePicker.querySelectorAll(".calendar-select .sel button");
 
       // 공통 이벤트 처리
       const handleBtnClick = (event, selectMenu) => {
@@ -1429,7 +1466,7 @@ const krds_calendar = {
       // 셀렉터 설정
       selectToggleButtons.forEach((toggle) => {
         toggle.addEventListener("click", (event) => {
-          const selectMenu = event.target.closest(".datepicker-drop-down").querySelector(".datepicker-select");
+          const selectMenu = event.target.closest(".calendar-drop-down").querySelector(".calendar-select");
           handleBtnClick(event, selectMenu);
         });
       });
@@ -1442,7 +1479,7 @@ const krds_calendar = {
 
           // 포커스 이동
           setTimeout(() => {
-            option.closest(".datepicker-drop-down").querySelector(".btn-cal-switch")?.focus();
+            option.closest(".calendar-drop-down").querySelector(".btn-cal-switch")?.focus();
           }, 50);
         });
       });
@@ -1457,7 +1494,7 @@ const krds_calendar = {
   },
   actionDatePicker() {
     this.datePickerArea.forEach((datePicker) => {
-      const actionButtons = datePicker.querySelectorAll(".datepicker-btn-wrap button:not(#get-today)");
+      const actionButtons = datePicker.querySelectorAll(".calendar-btn-wrap button:not(#get-today)");
       actionButtons.forEach((button) => {
         button.addEventListener("click", () => {
           this.closeAllDatePickers();
@@ -1468,12 +1505,12 @@ const krds_calendar = {
   // ui 동작 확인용 테스트 코드
   example() {
     this.datePickerArea.forEach((datePicker) => {
-      const year = datePicker.querySelector(".datepicker-switch-wrap .year").innerText.slice(0, -1);
-      const month = datePicker.querySelector(".datepicker-switch-wrap .month").innerText.slice(0, -1);
-      const caption = datePicker.querySelector(".datepicker-tbl caption");
-      const tblCells = datePicker.querySelectorAll(".datepicker-tbl td");
-      const tblCellBtns = datePicker.querySelectorAll(".datepicker-tbl td .btn-set-date");
-      const actionBtns = datePicker.querySelectorAll(".datepicker-btn-wrap button");
+      const year = datePicker.querySelector(".calendar-switch-wrap .year").innerText.slice(0, -1);
+      const month = datePicker.querySelector(".calendar-switch-wrap .month").innerText.slice(0, -1);
+      const caption = datePicker.querySelector(".calendar-tbl caption");
+      const tblCells = datePicker.querySelectorAll(".calendar-tbl td");
+      const tblCellBtns = datePicker.querySelectorAll(".calendar-tbl td .btn-set-date");
+      const actionBtns = datePicker.querySelectorAll(".calendar-btn-wrap button");
       let clickCount = 0;
       let startTd = null;
 
@@ -1505,10 +1542,10 @@ const krds_calendar = {
       // action
       const accReset = (action, btn, type) => {
         // 인풋 단일
-        const targetInput = btn.closest(".datepicker-conts").querySelector("input.datepicker.cal");
+        const targetInput = btn.closest(".calendar-conts").querySelector("input.datepicker.cal");
         // 인풋 분할
-        const targetInputStart = btn.closest(".datepicker-conts").querySelector(".input-group.range.set li:first-child input.datepicker");
-        const targetInputEnd = btn.closest(".datepicker-conts").querySelector(".input-group.range.set li:last-child input.datepicker");
+        const targetInputStart = btn.closest(".calendar-conts").querySelector(".input-group.range.set li:first-child input.datepicker");
+        const targetInputEnd = btn.closest(".calendar-conts").querySelector(".input-group.range.set li:last-child input.datepicker");
 
         action.addEventListener("click", () => {
           if (targetInput) {
@@ -1519,11 +1556,11 @@ const krds_calendar = {
             }
             if (target === "확인") {
               if (type === "single") {
-                const value = action.closest(".krds-datepicker-area").querySelector("td.period.start.end").getAttribute("data-date");
+                const value = action.closest(".krds-calendar-area").querySelector("td.period.start.end").getAttribute("data-date");
                 targetInput.value = value;
               } else {
-                const value1 = action.closest(".krds-datepicker-area").querySelector("td.period.start")?.getAttribute("data-date");
-                const value2 = action.closest(".krds-datepicker-area").querySelector("td.period.end")?.getAttribute("data-date") || "";
+                const value1 = action.closest(".krds-calendar-area").querySelector("td.period.start")?.getAttribute("data-date");
+                const value2 = action.closest(".krds-calendar-area").querySelector("td.period.end")?.getAttribute("data-date") || "";
                 targetInput.value = `${value1} ~ ${value2}`;
               }
             }
@@ -1535,8 +1572,8 @@ const krds_calendar = {
               accSet();
             }
             if (target === "확인") {
-              const value1 = action.closest(".krds-datepicker-area").querySelector("td.period.start")?.getAttribute("data-date");
-              const value2 = action.closest(".krds-datepicker-area").querySelector("td.period.end")?.getAttribute("data-date") || "";
+              const value1 = action.closest(".krds-calendar-area").querySelector("td.period.start")?.getAttribute("data-date");
+              const value2 = action.closest(".krds-calendar-area").querySelector("td.period.end")?.getAttribute("data-date") || "";
               targetInputStart.value = value1;
               targetInputEnd.value = value2;
             }
@@ -1544,13 +1581,13 @@ const krds_calendar = {
         });
         // 공통 접근성
         const accSet = () => {
-          const prevItems = action.closest(".krds-datepicker-area").querySelectorAll(".period");
+          const prevItems = action.closest(".krds-calendar-area").querySelectorAll(".period");
           prevItems.forEach((prev) => {
             prev.classList.remove("period", "start", "end");
             prev.querySelector(".btn-set-date").removeAttribute("aria-pressed");
           });
-          action.closest(".krds-datepicker-area").querySelector("td.today").classList.add("period", "start", "end");
-          action.closest(".krds-datepicker-area").querySelector("td.today .btn-set-date").setAttribute("aria-pressed", "true");
+          action.closest(".krds-calendar-area").querySelector("td.today").classList.add("period", "start", "end");
+          action.closest(".krds-calendar-area").querySelector("td.today .btn-set-date").setAttribute("aria-pressed", "true");
         };
       };
 
@@ -1562,7 +1599,7 @@ const krds_calendar = {
         }
 
         // var
-        const isSingle = btn.closest(".datepicker-wrap").classList.contains("single");
+        const isSingle = btn.closest(".calendar-wrap").classList.contains("single");
 
         if (isSingle) {
           btn.addEventListener("click", () => {
@@ -1637,7 +1674,7 @@ const krds_calendar = {
 const krds_inPageNavigation = {
   quickIndicators: null,
   init() {
-    this.quickIndicators = document.querySelectorAll(".krds-quick-nav-type .krds-quick-nav-area:not(.sample) .quick-nav-list");
+    this.quickIndicators = document.querySelectorAll(".krds-in-page-navigation-type .krds-in-page-navigation-area:not(.sample) .in-page-navigation-list");
 
     if (!this.quickIndicators.length) return;
 
@@ -1646,8 +1683,8 @@ const krds_inPageNavigation = {
     this.updateActiveSection();
   },
   observeListChanges() {
-    // quick-nav-list 변경 시 setupAnchorScroll 호출
-    const quickList = document.querySelector(".krds-quick-nav-type .quick-nav-list");
+    // in-page-navigation-list 변경 시 setupAnchorScroll 호출
+    const quickList = document.querySelector(".krds-in-page-navigation-type .in-page-navigation-list");
     if (!quickList) return;
     const observer = new MutationObserver(() => {
       this.setupAnchorScroll();
@@ -1696,8 +1733,8 @@ const krds_inPageNavigation = {
     }
   },
   calculateHeaderHeight() {
-    const headerTop = document.querySelector("#header-top")?.clientHeight || 0;
-    const headerInner = document.querySelector("#header .header-in")?.clientHeight || 0;
+    const headerTop = document.querySelector("#krds-masthead")?.clientHeight || 0;
+    const headerInner = document.querySelector("#krds-header .header-in")?.clientHeight || 0;
     return headerTop + headerInner;
   },
   updateActiveSection() {
@@ -1728,9 +1765,9 @@ const krds_inPageNavigation = {
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - topHeight;
         const sectionId = current.getAttribute("id");
-        const navLink = document.querySelector(`.krds-quick-nav-area a[href*=${sectionId}]`);
-        const firstAnchor = document.querySelector(".krds-quick-nav-area .quick-nav-list li:first-of-type a");
-        const lastAnchor = document.querySelector(".krds-quick-nav-area .quick-nav-list li:last-of-type a");
+        const navLink = document.querySelector(`.krds-in-page-navigation-area a[href*=${sectionId}]`);
+        const firstAnchor = document.querySelector(".krds-in-page-navigation-area .in-page-navigation-list li:first-of-type a");
+        const lastAnchor = document.querySelector(".krds-in-page-navigation-area .in-page-navigation-list li:last-of-type a");
         if (scrollBottom >= scrollHeight) {
           // 스크롤이 페이지 끝에 도달했을 때
           this.setActiveIndicator(lastAnchor);
@@ -1778,8 +1815,8 @@ const krds_helpPanel = {
     this.toggleScrollLock();
   },
   setupPadding() {
-    const topBannerHeight = document.querySelector("#header-top").offsetHeight;
-    const headerHeight = document.querySelector("#header .header-in").offsetHeight;
+    const topBannerHeight = document.querySelector("#krds-masthead")?.offsetHeight;
+    const headerHeight = document.querySelector("#krds-header .header-in")?.offsetHeight;
     const defaultPadding = topBannerHeight + headerHeight;
     const hiddenBannerPadding = headerHeight;
 
@@ -1809,7 +1846,7 @@ const krds_helpPanel = {
     }
   },
   observeMastHead() {
-    const topBanner = document.querySelector("#header-top");
+    const topBanner = document.querySelector("#krds-masthead");
     if (!topBanner) return;
     const body = document.body;
     const observer = new IntersectionObserver(
@@ -1925,10 +1962,12 @@ const krds_disclosure = {
       disclosureButton.setAttribute("aria-expanded", "false");
       disclosureButton.setAttribute("aria-controls", uniqueIdx);
       disclosureContent.setAttribute("id", uniqueIdx);
-      disclosureContent.setAttribute("aria-hidden", "true"); // 임시: disclosure 내용이 일부만 노출되는 경우
+      // disclosureContent.setAttribute("aria-hidden", "true"); // 임시: disclosure 내용이 일부만 노출되는 경우
+      disclosureContent.setAttribute("inert", "");
       if (disclosure.classList.contains("active")) {
         disclosureButton.setAttribute("aria-expanded", "true");
-        disclosureContent.setAttribute("aria-hidden", "false"); // 임시: disclosure 내용이 일부만 노출되는 경우
+        // disclosureContent.setAttribute("aria-hidden", "false"); // 임시: disclosure 내용이 일부만 노출되는 경우
+        disclosureContent.removeAttribute("inert");
       }
 
       disclosureButton.addEventListener("click", () => {
@@ -1941,7 +1980,13 @@ const krds_disclosure = {
 
     disclosure.classList.toggle("active", !isExpanded);
     disclosureButton.setAttribute("aria-expanded", !isExpanded);
-    disclosureContent.setAttribute("aria-hidden", isExpanded); // 임시: disclosure 내용이 일부만 노출되는 경우
+
+    // disclosureContent.setAttribute("aria-hidden", isExpanded); // 임시: disclosure 내용이 일부만 노출되는 경우
+    if (isExpanded) {
+      disclosureContent.setAttribute("inert", "");
+    } else {
+      disclosureContent.removeAttribute("inert");
+    }
   },
 };
 
@@ -2034,7 +2079,7 @@ const krds_adjustContentScale = {
 /*** * krds_toggleSwitch * ***/
 const krds_toggleSwitch = {
   init() {
-    const toggleSwitch = document.querySelectorAll(".krds-form-switch");
+    const toggleSwitch = document.querySelectorAll(".krds-form-toggle-switch");
 
     if (!toggleSwitch.length) return;
 
@@ -2054,7 +2099,7 @@ const krds_toggleSwitch = {
 /*** * krds_infoList * ***/
 const krds_infoList = {
   init() {
-    const infoLists = document.querySelectorAll(".info-list");
+    const infoLists = document.querySelectorAll(".krds-info-list");
 
     if (!infoLists.length) return;
 
@@ -2269,7 +2314,7 @@ const krds_chkBox = {
   },
   formChipFocus() {
     // form_chip 일때 포커스 처리
-    const formChip = document.querySelectorAll(".form-chip");
+    const formChip = document.querySelectorAll(".krds-form-chip");
 
     if (!formChip.length) return;
     
@@ -2321,7 +2366,7 @@ const krds_fileUpload = {
 /*** * nuriToggleEvent 누리집 토글 이벤트 현재는 사용 안 함 * ***/
 const nuriToggleEvent = {
   init() {
-    const _toggleBtns = document.querySelectorAll("#header-top .toggle-btn");
+    const _toggleBtns = document.querySelectorAll("#krds-masthead .toggle-btn");
     _toggleBtns.forEach(($toggleBtn) => {
       $toggleBtn.addEventListener("click", ($btnAct) => {
         const $target = $btnAct.target.closest(".toggle-head");
@@ -2394,5 +2439,4 @@ window.addEventListener("scroll", () => {
 window.addEventListener("resize", () => {
   windowSize.setWinSize();
   krds_helpPanel.init();
-  krds_dropEvent.closeAllDropdowns();
 });

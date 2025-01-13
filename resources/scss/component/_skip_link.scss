@@ -15,7 +15,7 @@
 //모드 설정
 $mode-setting: light;
 
-#skip-nav {
+#krds-skip-link {
   @include skip-link-size-variable();
   @include skip-link-color-variable(#{$mode-setting});
   
@@ -39,19 +39,11 @@ $mode-setting: light;
       height: var(--krds-size-height-5);
       margin: 0 auto;
       text-align: center;
-      @include mobile {
+      @include size-medium {
         font-size: var(--krds-skip-link--mobile-font-size);
       }
     }
   }
-  //&.type1 {
-  //  background-color: var(--krds-#{$mode-setting}-color-background-white);
-  //  a {
-  //    &:focus {
-  //      color: var(--krds-#{$mode-setting}-color-text-basic);
-  //    }
-  //  }
-  //}
 }
 
 //고대비모드
@@ -59,7 +51,7 @@ $mode-setting: light;
   //모드 설정
   $mode-setting: high-contrast;
 
-  #skip-nav {
+  #krds-skip-link {
     @include skip-link-color-variable(#{$mode-setting});
   }
 }

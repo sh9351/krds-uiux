@@ -1,20 +1,27 @@
 <!-- 메인메뉴 : 데스크탑 -->
-<nav class="krds-gnb">
+<!-- 이 코드는 샘플용입니다. 실제 동작은 헤더를 참조하세요. -->
+<nav class="krds-main-menu sample">
 	<div class="inner">
 		<ul class="gnb-menu">
 			<li>
-				<button type="button" class="gnb-main-trigger" data-trigger="gnb"><h2>1Depth</h2></button>
+				<button type="button" class="gnb-main-trigger active" data-trigger="gnb">1Depth</button>
 				<!-- gnb-toggle-wrap -->
-				<div class="gnb-toggle-wrap">
+				<div class="gnb-toggle-wrap is-open">
 					<!-- gnb-main-list -->
 					<div class="gnb-main-list" data-has-submenu="true">
 						<ul>
 							<li>
-								<button type="button" class="gnb-sub-trigger" data-trigger="gnb">2Depth</button>
+								<button type="button" class="gnb-sub-trigger active" data-trigger="gnb">2Depth</button>
 								<!-- gnb-sub-list -->
-								<div class="gnb-sub-list">
+								<div class="gnb-sub-list active">
 									<div class="gnb-sub-content">
-										<h3 class="sub-title"><span>2Depth title</span></h3>
+										<h2 class="sub-title">
+											2Depth title
+											<a href="#" class="krds-btn link basic small">
+												<span class="underline">바로가기</span>
+												<i class="svg-icon ico-angle right"></i>
+											</a>
+										</h2>
 										<ul>
 											<li><a href="#">Last depth</a></li>
 											<li><button type="button">Last depth</button></li>
@@ -32,9 +39,13 @@
 								<!-- gnb-sub-list -->
 								<div class="gnb-sub-list between">
 									<div class="gnb-sub-content">
-										<h3 class="sub-title">
-											<a href="#">2Depth title <i class="svg-icon ico-page-next"></i></a>
-										</h3>
+										<h2 class="sub-title">
+											2Depth title
+											<a href="#" class="krds-btn link basic small">
+												<span class="underline">바로가기</span>
+												<i class="svg-icon ico-angle right"></i>
+											</a>
+										</h2>
 										<ul>
 											<li><a href="#">Last depth</a></li>
 											<li><button type="button">Last depth</button></li>
@@ -49,22 +60,29 @@
 								<!-- //gnb-sub-list -->
 							</li>
 							<li>
-								<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb" target="_blank" title="새 창 열림">
-									외부사이트 링크(anchor)
-									<i class="svg-icon ico-go"></i>
-								</a>
-							</li>
-							<li>
-								<button type="button" class="gnb-sub-trigger is-link" data-trigger="gnb" title="새 창 열림">
-									외부사이트 링크(button)
-									<i class="svg-icon ico-go"></i>
-								</button>
-							</li>
-							<li>
-								<div class="gnb-sub-banner">
-									<span class="krds-badge bg-primary">신규 서비스</span>
-									<button type="button" class="krds-btn large text" data-trigger="gnb">메뉴명 <i class="svg-icon ico-angle right"></i></button>
+								<button type="button" class="gnb-sub-trigger" data-trigger="gnb">2Depth</button>
+								<!-- gnb-sub-list -->
+								<div class="gnb-sub-list between">
+									<div class="gnb-sub-content">
+										<h2 class="sub-title"><span>2Depth title</span></h2>
+										<ul>
+											<li><a href="#">Last depth</a></li>
+											<li><button type="button">Last depth</button></li>
+											<li><button type="button">Last depth</button></li>
+										</ul>
+									</div>
+									<div class="gnb-sub-banner">
+										<span class="krds-badge bg-primary">신규 서비스</span>
+										<button type="button" class="krds-btn medium text">메뉴명 <i class="svg-icon ico-angle right"></i></button>
+									</div>
 								</div>
+								<!-- //gnb-sub-list -->
+							</li>
+							<li>
+								<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb">2Depth</a>
+							</li>
+							<li>
+								<a href="#" class="gnb-sub-trigger is-link external-link" data-trigger="gnb" target="_blank" title="새 창 열림">2Depth</a>
 							</li>
 						</ul>
 					</div>
@@ -74,7 +92,7 @@
 			</li>
 			
 			<li>
-				<button type="button" class="gnb-main-trigger" data-trigger="gnb"><h2>1Depth</h2></button>
+				<button type="button" class="gnb-main-trigger" data-trigger="gnb">1Depth</button>
 				<!-- gnb-toggle-wrap -->
 				<div class="gnb-toggle-wrap">
 					<!-- gnb-main-list -->
@@ -85,12 +103,12 @@
 								<!-- gnb-sub-list -->
 								<div class="gnb-sub-list">
 									<div class="gnb-sub-content">
-										<h3 class="sub-title"><span>2Depth title</span></h3>
+										<h2 class="sub-title"><span>2Depth title</span></h2>
 										<ul class="type-description">
 											<li>
-												<h4 class="tit">
-													<a href="#">3Depth title <i class="svg-icon ico-go"></i></a>
-												</h4>
+												<h3 class="tit">
+													<a href="#" target="_blank" title="새 창 열림">3Depth title <i class="svg-icon ico-go"></i></a>
+												</h3>
 												<p class="txt">메뉴명과 메뉴에 관한 간략한 설명이 표시되는 스타일입니다.</p>
 											</li>
 										</ul>
@@ -107,12 +125,12 @@
 								<!-- gnb-sub-list -->
 								<div class="gnb-sub-list between">
 									<div class="gnb-sub-content">
-										<h3 class="sub-title"><span>2Depth title</span></h3>
+										<h2 class="sub-title"><span>2Depth title</span></h2>
 										<ul class="type-description">
 											<li>
-												<h4 class="tit">
-													<a href="#">3Depth title <i class="svg-icon ico-go"></i></a>
-												</h4>
+												<h3 class="tit">
+													<a href="#" target="_blank" title="새 창 열림">3Depth title <i class="svg-icon ico-go"></i></a>
+												</h3>
 												<p class="txt">메뉴명과 메뉴에 관한 간략한 설명이 표시되는 스타일입니다.</p>
 											</li>
 										</ul>
@@ -124,6 +142,12 @@
 								</div>
 								<!-- //gnb-sub-list -->
 							</li>
+							<li>
+								<a href="#" class="gnb-sub-trigger is-link" data-trigger="gnb">2Depth</a>
+							</li>
+							<li>
+								<a href="#" class="gnb-sub-trigger is-link external-link" data-trigger="gnb" target="_blank" title="새 창 열림">2Depth</a>
+							</li>
 						</ul>
 					</div>
 					<!-- //gnb-main-list -->
@@ -132,7 +156,7 @@
 			</li>
 			
 			<li>
-				<button type="button" class="gnb-main-trigger" data-trigger="gnb"><h2>1Depth</h2></button>
+				<button type="button" class="gnb-main-trigger" data-trigger="gnb">1Depth</button>
 				<!-- gnb-toggle-wrap -->
 				<div class="gnb-toggle-wrap">
 					<!-- gnb-main-list -->
@@ -140,8 +164,17 @@
 						<!-- gnb-sub-list -->
 						<div class="gnb-sub-list single-list between">
 							<div class="gnb-sub-content">
-								<h3 class="sub-title"><span>2Depth title</span></h3>
+								<h2 class="sub-title"><span>2Depth title</span></h2>
 								<ul>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
+									<li><a href="#">Last depth</a></li>
 									<li><a href="#">Last depth</a></li>
 								</ul>
 							</div>
@@ -158,10 +191,10 @@
 			</li>
 			
 			<li>
-				<a href="#" class="gnb-main-trigger is-link" data-trigger="gnb"><h2>링크(anchor)</h2></a>
+				<a href="#" class="gnb-main-trigger is-link" data-trigger="gnb">링크(anchor)</a>
 			</li>
 			<li>
-				<button type="button" class="gnb-main-trigger is-link" data-trigger="gnb"><h2>링크(button)</h2></button>
+				<button type="button" class="gnb-main-trigger is-link" data-trigger="gnb">링크(button)</button>
 			</li>
 		</ul>
 	</div>

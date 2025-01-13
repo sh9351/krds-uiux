@@ -15,7 +15,7 @@
 
 //모드 설정
 $mode-setting: light;
-/* krds-drop-wrap */
+
 .krds-drop-wrap {
 	@include language-color-variable(#{$mode-setting});
 
@@ -30,14 +30,14 @@ $mode-setting: light;
           color: var(--krds-language--top-title-color);
           font-weight: var(--krds-font-weight-bold);
           font-size: var(--krds-language--top-title-pc-font-size);
-          @include mobile() {
+          @include size-medium {
             font-size: var(--krds-language--top-title-mobile-font-size);
           }
         }
         span {
           color: var(--krds-language--top-title-sub-color);
           font-size: var(--krds-language--top-title-sub-pc-font-size);
-          @include mobile() {
+          @include size-medium {
             font-size: var(--krds-language--top-title-sub-mobile-font-size);
           }
         }

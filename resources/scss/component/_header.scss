@@ -25,18 +25,16 @@
 //모드 설정
 $mode-setting: light;
 
-#header {
+#krds-header {
 	@include header-size-variable();
 	@include header-color-variable(#{$mode-setting});
 
 	@include position($p: sticky, $t: 0, $l: 0);
 	z-index: 70;
-	//border-bottom: 0.1rem solid var(--krds-gray-30);
 	background-color: var(--krds-header--color-surface);
 	.header-in {
 		position: relative;
 		transform: translateY(0);
-		// border-bottom: 0.1rem solid var(--krds-#{$mode-setting}-color-divider-gray-light);
 	}
 
 	.header-utility {
@@ -64,11 +62,10 @@ $mode-setting: light;
 		.inner {
 			@include flex-layout($fd: column, $ai: normal);
 			//web 전용 속성
-			@include tabletMore {
+			@include size-large-more {
 				gap: var(--krds-header--container-gap);
 				padding-top: var(--krds-header--container-padding-top);
 				padding-bottom: var(--krds-header--container-padding-bottom);
-				//padding: var(--krds-spacer-3) var(--krds-spacer-6) var(--krds-spacer-4);
 			}
 		}
 		.header-branding {
@@ -76,9 +73,17 @@ $mode-setting: light;
 		}
 		.logo {
 			display: inline-flex;
+			@include square(13.7rem, var(--krds-size-height-7));
+			@include size-medium {
+				@include square(9.4rem, 3.2rem);
+			}
 			a {
-				@include flex-layout($d: inline-flex, $ai: center);
-				gap: var(--krds-padding-9);
+				display: block;
+				@include square(100%);
+				background-image: url(#{$url}/img/component/icon/ico_logo_krds.svg);
+				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
 			}
 		}
 		.header-actions {
@@ -102,7 +107,6 @@ $mode-setting: light;
 				@include svg-icon($size: var(--krds-icon--size-medium), $mode: #{$mode-setting});
 			}
 			&:hover {
-				//border-radius: var(--krds-rd-6);
 				background-color: var(--krds-header--navi-color-hover);
 			}
 			&:active,
@@ -144,7 +148,7 @@ $mode-setting: light;
 /* 스크롤 동작 */
 #wrap {
 	&[class*="scroll"] {
-		#header:not(.sample) {
+		#krds-header:not(.sample) {
 			position: relative;
 			border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 			.header-in {
@@ -160,14 +164,14 @@ $mode-setting: light;
 		}
 	}
 	&.scroll-down {
-		#header:not(.sample) {
+		#krds-header:not(.sample) {
 			.header-in {
 				transform: translateY(-100%);
 			}
 		}
 	}
 	&.scroll-up {
-		#header:not(.sample) {
+		#krds-header:not(.sample) {
 			.header-in {
 				transform: translateY(0);
 			}
@@ -180,12 +184,20 @@ $mode-setting: light;
 	//모드 설정
 	$mode-setting: high-contrast;
 
-	#header {
+	#krds-header {
 		@include header-color-variable(#{$mode-setting});
+		.inner {
+			border-bottom-color: var(--krds-#{$mode-setting}-color-divider-gray-light);
+		}
 		.header-container {
 			.btn-navi {
 				&::before {
 					@include svg-icon(var(--krds-icon--size-medium), $mode: #{$mode-setting});
+				}
+			}
+			.logo {
+				a {
+					background-image: url(#{$url}/img/component/icon/ico_logo_krds_high_contrast.svg);
 				}
 			}
 		}
@@ -193,8 +205,8 @@ $mode-setting: light;
 }
 
 //web 전용 속성
-@include tabletMore {
-	#header {
+@include size-large-more {
+	#krds-header {
 		.header-container {
 			.btn-navi {
 				&.all {
@@ -208,7 +220,7 @@ $mode-setting: light;
 		overflow: hidden;
 		#wrap {
 			&.scroll-down {
-				#header {
+				#krds-header {
 					.header-in {
 						transform: translateY(0);
 					}
@@ -216,15 +228,15 @@ $mode-setting: light;
 			}
 		}
 		&.hasScrollY {
-			#header-top,
-			#header .header-container,
-			#header .krds-gnb,
-			#header .gnb-toggle-wrap,
+			#krds-masthead,
+			#krds-header .header-container,
+			#krds-header .krds-main-menu,
+			#krds-header .gnb-toggle-wrap,
 			#container,
-			#footer {
+			#krds-footer {
 				padding-right: 1.7rem;
 			}
-			#footer .foot-quick {
+			#krds-footer .foot-quick {
 				padding-right: 1.7rem;
 				margin-right: -1.7rem;
 			}
@@ -233,16 +245,14 @@ $mode-setting: light;
 }
 
 //태블릿 & 모바일 전용 속성
-@include tabletLess {
-	#header {
+@include size-large-less {
+	#krds-header {
 		.inner {
 			padding-top: var(--krds-gap-3);
 			padding-bottom: var(--krds-gap-3);
 			border-bottom: var(--krds-#{$mode-setting}-border-width-static-regular) solid var(--krds-#{$mode-setting}-color-divider-gray-light);
 		}
-		.logo {
-			width: 9.4rem;
-		}
+
 		.header-container {
 			.header-utility {
 				display: none;
@@ -264,16 +274,14 @@ $mode-setting: light;
 }
 
 //모바일 전용
-@include mobile {
-	#header {
+@include size-medium {
+	#krds-header {
 		.header-container {
 			.header-actions{
 				gap: 0;
 			}
 			.btn-navi {
-				// gap: var(--krds-number-5);
 				font-size: var(--krds-header--navi-font-size-mobile);
-				// padding: var(--krds-number-3);
 			}
 		}
 	}

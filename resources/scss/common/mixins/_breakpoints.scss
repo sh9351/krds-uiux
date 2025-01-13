@@ -1,45 +1,45 @@
 @import "../group_variables";
 
-@mixin mobile { // 768까지
-	@media (max-width: $breakpoint-mobile) {
+@mixin size-medium { // 767까지
+	@media (max-width: $breakpoint-medium - 1px) {
 		@content;
 	}
 }
-@mixin mobileMore { // 769이상
-	@media (min-width: calc($breakpoint-mobile + 1px)) {
+@mixin size-medium-more { // 768이상
+	@media (min-width: calc($breakpoint-medium)) {
 		@content;
 	}
 }
 
-@mixin tablet { //  769 ~ 1024
-	@media (min-width: calc($breakpoint-mobile + 1px)) and (max-width: $breakpoint-tablet) {
+@mixin size-medium-to-large { //  768 ~ 1023
+	@media (min-width: calc($breakpoint-medium)) and (max-width: $breakpoint-large - 1px) {
 		@content;
 	}
 }
 
 //tablet size 이하
-@mixin tabletLess { // 1024까지
-	@media (max-width: $breakpoint-tablet) {
+@mixin size-large-less { // 1023까지
+	@media (max-width: $breakpoint-large - 1px) {
 		@content;
 	}
 }
 
 //tablet size 이상
-@mixin tabletMore { // 1025이상
-	@media (min-width: calc($breakpoint-tablet + 1px)) {
+@mixin size-large-more { // 1024이상
+	@media (min-width: calc($breakpoint-large)) {
 		@content;
 	}
 }
 
 //소형 데스크톱
-@mixin desktopSmall { // 1025 ~ 1279
-	@media (min-width: calc($breakpoint-tablet + 1px)) and (max-width: calc($breakpoint-pc - 1px)) {
+@mixin size-large-to-xlarge { // 1024 ~ 1279
+	@media (min-width: calc($breakpoint-large)) and (max-width: calc($breakpoint-xlarge - 1px)) {
 		@content;
 	}
 }
 
-@mixin desktop { // 1280 이상
-	@media (min-width: $breakpoint-pc) {
+@mixin size-xlarge { // 1280 이상
+	@media (min-width: $breakpoint-xlarge) {
 		@content;
 	}
 }

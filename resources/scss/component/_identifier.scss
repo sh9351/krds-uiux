@@ -1,7 +1,7 @@
 /* 운영기관 식별자 */
 //모드 설정
 $mode-setting: light;
-.f-btm-ban {
+.krds-identifier {
 	@include flex-layout($ai: center);
 	gap: var(--krds-gap-3);
 	width: 100%;
@@ -10,24 +10,25 @@ $mode-setting: light;
 	border-radius: var(--krds-radius-medium1);
 	background-color: var(--krds-#{$mode-setting}-color-surface-white);
 	//모바일 전용
-	@include mobile {
+	@include size-medium {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--krds-gap-2);
 	}
 	.logo {
 		@include square(6.8rem, var(--krds-size-height-4));
-		background-image: url(#{$url}/guide/common/ico_logo_krds.svg);
+		background-image: url(#{$url}/img/component/icon/ico_logo_krds.svg);
 		background-size: contain;
 		background-repeat: no-repeat;
+		background-position: center;
 		//모바일 전용
-		@include mobile {
+		@include size-medium {
 			@include square(5.8rem, var(--krds-size-height-3));
 		}
 	}
 	.ban-txt {
 		font-size: var(--krds-pc-font-size-body-small);
-		@include mobile {
+		@include size-medium {
 			font-size: var(--krds-mobile-font-size-body-xsmall);
 			word-break: break-all;
 		}
@@ -39,10 +40,10 @@ $mode-setting: light;
 	//모드 설정
 	$mode-setting: high-contrast;
 
-	.f-btm-ban {
+	.krds-identifier {
 		background-color: var(--krds-#{$mode-setting}-color-surface-white);
 		.logo {
-			background-image: url(#{$url}/guide/common/ico_logo_krds_high_contrast.svg);
+			background-image: url(#{$url}/img/component/icon/ico_logo_krds_high_contrast.svg);
 		}
 	}
 }

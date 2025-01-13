@@ -232,9 +232,6 @@ input[type='text']::-ms-clear {
 	display: none;
 }
 
-
-
-
 caption {
 	position: static !important;
 	margin: 0 !important;
@@ -286,6 +283,9 @@ caption {
 .underline {
 	@include underline();
 }
+.break-all {
+	word-break: break-all;
+}
 //svg icon
 .svg-icon {
 	@include svg-icon();
@@ -294,13 +294,17 @@ caption {
 	}
 }
 
+.inner {
+	max-width: var(--krds-contents-wrap-size);
+	padding-left: var(--krds-contents-padding-x);
+	padding-right: var(--krds-contents-padding-x);
+}
+
 //responsive mobile
-@include mobile {
+@include size-medium {
 	body {
 		font-size: var(--krds-mobile-font-size-body-medium);
 	}
-
-
 	.pc-only {
 		display: none !important;
 	}
@@ -313,7 +317,14 @@ caption {
 	}
 }
 
-@include mobileMore {
+//responsive web
+@include size-large-more {
+	.inner {
+		margin: 0 auto;
+	}
+}
+
+@include size-medium-more {
 	.mob-only {
 		display: none !important;
 	}

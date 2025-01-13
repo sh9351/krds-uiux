@@ -77,6 +77,7 @@ $mode-setting: light;
 [class ^= 'swiper-button-']{
     @include flex-layout( $jc: center, $ai: center);
     @include square(var(--krds-size-height-6));
+	flex-shrink: 0;
     border-radius: var(--krds-radius-max);
     border: var(--krds-#{$mode-setting}-border-width-variable-regular) solid var(--krds-#{$mode-setting}-color-border-gray-light);
     background-color: var(--krds-#{$mode-setting}-color-action-white);
@@ -85,6 +86,9 @@ $mode-setting: light;
         @include svg-icon();
         font-size: 0 !important;
     }
+	&:hover{
+		background-color: var(--krds-#{$mode-setting}-color-action-secondary-hover);
+	}
 }
 
 .swiper-button-more {
@@ -179,6 +183,9 @@ $mode-setting: light;
 		&::after {
 			background-color: var(--krds-#{$mode-setting}-color-text-basic);
 		}
+		&:hover{
+			background-color: var(--krds-#{$mode-setting}-color-action-secondary-hover);
+		}
 	}
 	
 	.swiper-button-next,
@@ -200,7 +207,7 @@ $mode-setting: light;
 
 
 //모바일 전용 속성
-@include mobile {
+@include size-medium {
     .swiper-indicator {
         &.w-hide {
             display: flex !important;

@@ -1,6 +1,8 @@
 /* 맥락적 도움말 */
 //모드 설정
 $mode-setting: light;
+
+//사이즈 정의
 @mixin contextual-help-size-variable() {
 	--krds-contextual-help--action-btn-radius: var(--krds-radius-small2);
 	--krds-contextual-help--action-pc-font-size: var(--krds-pc-font-size-body-small);
@@ -13,6 +15,8 @@ $mode-setting: light;
 	--krds-contextual-help--popover-contents-pc-font-size: var(--krds-pc-font-size-body-small);
 	--krds-contextual-help--popover-contents-mobile-font-size: var(--krds-mobile-font-size-body-small);
 }
+
+//컬러 정의
 @mixin contextual-help-color-variable($mode: light) {
 	--krds-contextual-help--action-btn-color-background: var(--krds-#{$mode}-color-action-secondary);
 	--krds-contextual-help--action-btn-color-background-hover: var(--krds-#{$mode}-color-action-secondary-hover);
@@ -22,10 +26,9 @@ $mode-setting: light;
 	--krds-contextual-help--popover-color-text-bolder: var(--krds-#{$mode}-color-text-bolder);
 	--krds-contextual-help--popover-color-border: var(--krds-#{$mode}-color-border-gray);
 	--krds-contextual-help--popover-color-background: var(--krds-#{$mode}-color-surface-white-subtler);
-	--krds-contextual-help--popover-shadow: 0 0 0.2rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow2), 0 0.8rem 1.6rem 0 var(--krds-#{$mode-setting}-color-alpha-shadow3);
+	--krds-contextual-help--popover-shadow: 0 0 0.2rem 0 var(--krds-#{$mode}-color-alpha-shadow2), 0 0.8rem 1.6rem 0 var(--krds-#{$mode}-color-alpha-shadow3);
 }
 
-// krds-contextual-help
 .krds-contextual-help {
 	@include contextual-help-size-variable();
 	@include contextual-help-color-variable();
@@ -42,12 +45,6 @@ $mode-setting: light;
 			@include flex-layout($ai:center);
 			border-radius: var(--krds-contextual-help--action-btn-radius);
 			background-color: var(--krds-contextual-help--action-btn-color-background);
-			// &::before {
-			// 	display: inline-flex;
-			// 	@include pseudo();
-			// 	@include svg-icon($mode: light);
-			// 	@include icon-set(ico_tooltip_20);
-			// }
 			&:hover {
 				background-color: var(--krds-contextual-help--action-btn-color-background-hover);
 			}
@@ -73,6 +70,7 @@ $mode-setting: light;
 		border-radius: var(--krds-contextual-help--popover-radius);
 		background-color: var(--krds-contextual-help--popover-color-background);
 		border: .1rem solid var(--krds-contextual-help--popover-color-border);
+		box-shadow: var(--krds-contextual-help--popover-shadow);
 		&::before {
 			@include pseudo();
 			@include square(var(--krds-contextual-help--bubble-arrow-size));
@@ -133,7 +131,6 @@ $mode-setting: light;
 		.tooltip-popover { 
 			bottom: 100%;
 			margin-bottom: var(--krds-gap-5);
-			box-shadow: var(--krds-contextual-help--popover-color-shadow);
 			&::before {
 				top: 100%;
 			}
@@ -164,10 +161,9 @@ $mode-setting: light;
 }
 
 //responsive mobile
-@include mobile {
+@include size-medium {
 	.krds-contextual-help {
 		.tooltip-popover {
-			// width: auto !important;
 			right: unset !important;
 			transform: none !important;
 			margin-left: 0 !important;

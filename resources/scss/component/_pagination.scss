@@ -7,7 +7,7 @@
     --krds-pagination--radius: var(--krds-radius-medium1);
     --krds-pagination--prev-btn-padding-left: var(--krds-padding-2);
     --krds-pagination--prev-btn-padding-right: var(--krds-padding-3);
-    @include mobile() {
+    @include size-medium {
         --krds-pagination-gap: var(--krds-gap-7) var(--krds-gap-3);
         --krds-pagination-margin-top: var(--krds-mobile-gap-layout-h2-h3);
     }
@@ -25,15 +25,16 @@
 
 //모드 설정
 $mode-setting: light;
-.pagination {
-    @include pagination-size-variable();
+.krds-pagination {
     @include pagination-color-variable(#{$mode-setting});
-
-    @include flex-layout($ai: center, $jc: center);
-    gap: var(--krds-pagination-gap);
-    width: 100%;
-    margin-top: var(--krds-pagination-margin-top);
-    color: var(--krds-pagination--color-text);
+    @include pagination-size-variable();
+    & {
+        @include flex-layout($ai: center, $jc: center);
+        gap: var(--krds-pagination-gap);
+        width: 100%;
+        margin-top: var(--krds-pagination-margin-top);
+        color: var(--krds-pagination--color-text);
+    }
     .page-navi,
     .page-link {
         @include flex-layout($d: inline-flex, $jc: center, $ai: center);
@@ -100,7 +101,7 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
     //모드 설정
     $mode-setting: high-contrast;
-    .pagination {
+    .krds-pagination {
         @include pagination-color-variable(#{$mode-setting});
 
         .page-navi {
@@ -126,8 +127,8 @@ $mode-setting: light;
 }
 
 //태블릿 & 모바일 전용 속성
-@include tabletLess() {
-	.pagination {
+@include size-large-less {
+	.krds-pagination {
 		.page-links{
 			.page-link{
 				&:nth-child(6),
@@ -141,8 +142,8 @@ $mode-setting: light;
 }
 
 //태블릿 & 모바일 전용 속성
-@include mobile() {
-    .pagination {
+@include size-medium {
+    .krds-pagination {
 
 
 		flex-wrap: wrap;

@@ -28,7 +28,7 @@
 
 //모드 설정
 $mode-setting: light;
-.info-list {
+.krds-info-list {
 	@include text-list-size-variable();
 	@include text-list-color-variable(#{$mode-setting});
 
@@ -42,29 +42,29 @@ $mode-setting: light;
 		padding-left: var(--krds-info-list--depth1-padding-left);
 		color: var(--krds-info-list--depth1-color-text);
 		font-size: var(--krds-info-list--pc-text-depth1);
-		@include mobile {
+		@include size-medium {
 			font-size:  var(--krds-info-list--mobile-text-depth1);
 		}
 		&::before {
 			@include position($t: 0, $l: 0);
 		}
-		> .info-list { //2depth
+		> .krds-info-list { //2depth
 			gap: var(--krds-info-list--gap-layout-depth2-li-li);
 			margin-top: var(--krds-info-list--depth2-list-margin-top);
 			> li {
 				padding-left: var(--krds-info-list--depth2-padding-left);
 				color: var(--krds-info-list--depth2-color-text);
 				font-size: var(--krds-info-list--pc-text-depth2);
-				@include mobile {
+				@include size-medium {
 					font-size:  var(--krds-info-list--mobile-text-depth2);
 				}
-				> .info-list { //3depth
+				> .krds-info-list { //3depth
 					margin-top: var(--krds-info-list--depth3-list-margin-top);
 					> li {
 						padding-left: var(--krds-info-list--depth3-padding-left);
 						color: var(--krds-info-list--depth3-color-text);
 						font-size: var(--krds-info-list--pc-text-depth3);
-						@include mobile {
+						@include size-medium {
 							font-size:  var(--krds-info-list--mobile-text-depth3);
 						}
 					}
@@ -78,7 +78,6 @@ $mode-setting: light;
 	&.decimal {
 		> li {
 			&::before {
-				// content: "\2022"; //bullet
 				@include pseudo();
 				@include square(0.6rem);
 				content: "";
@@ -101,7 +100,6 @@ $mode-setting: light;
 		> li {
 			padding-left: var(--krds-info-list--depth3-padding-left);
 			&::before {
-				// content: "\00BA";
 				@include pseudo();
 				@include square(0.4rem);
 				content: "";
@@ -129,7 +127,7 @@ $mode-setting: light;
 	//모드 설정
 	$mode-setting: high-contrast;
 
-	.info-list {
+	.krds-info-list {
 		@include text-list-color-variable(#{$mode-setting});
 	}
 }

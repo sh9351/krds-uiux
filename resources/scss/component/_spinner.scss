@@ -18,7 +18,7 @@
 
 //모드 설정
 $mode-setting: light;
-.spinner {
+.krds-spinner {
 	@include spinner-size-variable();
 	@include spinner-color-variable(#{$mode-setting});
 
@@ -32,7 +32,7 @@ $mode-setting: light;
 	height: 100%;
 	text-align: right;
 
-	@include mobile {
+	@include size-medium {
 		font-size: var(--krds-spinner--mobile-font-size);
 	}
 	&::before {
@@ -54,7 +54,7 @@ $mode-setting: light;
 	--krds-spinner-form-spinner-padding-x: var(--krds-number-8);
 
 	position: relative;
-	.spinner {
+	.krds-spinner {
 		position: absolute;
 		justify-content: flex-end;
 		padding: 0 var(--krds-spinner-form-spinner-padding-x);
@@ -72,7 +72,7 @@ $mode-setting: light;
 	//모드 설정
 	$mode-setting: high-contrast;
 
-	.spinner {
+	.krds-spinner {
 		@include spinner-color-variable(#{$mode-setting});
 	}
 }

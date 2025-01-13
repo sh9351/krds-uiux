@@ -64,7 +64,7 @@
 	border-radius: var(--krds-btn-tag--size-height-#{$size});
 	font-size: var(--krds-btn-tag--pc-font-size-#{$size});
 	line-height: var(--krds-line-height-none);
-	@include mobile() {
+	@include size-medium {
 		font-size: var(--krds-btn-tag--mobile-font-size-#{$size});
 	}
 }
@@ -86,18 +86,17 @@
 }
 //모드 설정
 $mode-setting: light;
-.tag-wrap {
-	@include tag-size-variable();
+.krds-tag-wrap {
 	@include tag-color-variable(#{$mode-setting});
+	@include tag-size-variable();
 
 	$size: medium;
 
 	& {
+		display: flex;
+		flex-wrap: wrap;
 		@include tag-wrapper(#{$size});
 	}
-
-	display: flex;
-	flex-wrap: wrap;
 
 	.krds-btn-tag {
 		@include flex-layout($d: inline-flex, $ai: center);
@@ -127,7 +126,7 @@ $mode-setting: light;
 @include color-mode($mode: high-contrast) {
 	//모드 설정
 	$mode-setting: high-contrast;
-	.tag-wrap {
+	.krds-tag-wrap {
 		@include tag-color-variable(#{$mode-setting});
 	}
 }

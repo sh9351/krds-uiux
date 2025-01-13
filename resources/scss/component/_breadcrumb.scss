@@ -1,4 +1,4 @@
-/* breadcrumb */
+/* 브레드크럼 */
 //모드 설정
 $mode-setting: light;
 
@@ -13,11 +13,11 @@ $mode-setting: light;
 
 //컬러 정의
 @mixin breadcrumb-color-variable($mode: light) {
-	--krds-breadcrumb--color-action: var(--krds-#{$mode-setting}-color-action-secondary);
-	--krds-breadcrumb--color-action-hover: var(--krds-#{$mode-setting}-color-action-secondary-hover);
-	--krds-breadcrumb--color-action-pressed: var(--krds-#{$mode-setting}-color-action-secondary-pressed);
-	--krds-breadcrumb--color-text: var(--krds-#{$mode-setting}-color-text-basic);
-	--krds-breadcrumb--color-text-disabled: var(--krds-#{$mode-setting}-color-text-disabled);
+	--krds-breadcrumb--color-action: var(--krds-#{$mode}-color-action-secondary);
+	--krds-breadcrumb--color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-breadcrumb--color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-breadcrumb--color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-breadcrumb--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
 }
 .krds-breadcrumb-wrap {
 	@include breadcrumb-size-variable();
@@ -34,7 +34,7 @@ $mode-setting: light;
 		li {
 			@include flex-layout($d: inline-flex, $ai: center);
 			font-size: var(--krds-breadcrumb--pc-font-size);
-			@include mobile {
+			@include size-medium {
 				font-size: var(--krds-breadcrumb--mobile-font-size);
 			}
 			.txt {
@@ -91,7 +91,7 @@ $mode-setting: light;
 }
 
 //모바일 전용 속성
-@include mobile {
+@include size-medium {
 	.krds-breadcrumb-wrap {
 		padding-top: var(--krds-mobile-gap-layout-header-breadcrumb);
 		padding-bottom: var(--krds-mobile-gap-layout-breadcrumb-h2);
@@ -103,7 +103,7 @@ $mode-setting: light;
 						@include sr-only;
 					}
 				}
-				&:not(:nth-child(2)) {
+				&:not(.home):not(:nth-child(2)) {
 					&:last-child {
 						gap: var(--krds-gap-2);
 						&::before,
@@ -127,8 +127,6 @@ $mode-setting: light;
 			}
 		}
 	}
-
-
 }
 
 //고대비모드
@@ -159,7 +157,7 @@ $mode-setting: light;
 	}
 
 	//모바일 전용 속성
-	@include mobile {
+	@include size-medium {
 		.krds-breadcrumb-wrap {
 			.breadcrumb {
 				li {

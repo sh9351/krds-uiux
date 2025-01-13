@@ -5,34 +5,19 @@ $contents-padding-x-mobile: 16px !default;
 $contents-wrap-size: $contents-size + ($contents-padding-x-pc * 2) !default;
 
 //BREAK POINTS
-$breakpoint-xsmall: 360px !default;
-$breakpoint-small: 768px !default;
-$breakpoint-medium: 1024px !default;
-$breakpoint-large: 1280px !default;
-$breakpoint-xlarge: 1440px !default;
-
-$breakpoint-mobile: $breakpoint-small !default;
-$breakpoint-tablet: $breakpoint-medium !default;
-$breakpoint-pc: $breakpoint-large !default;
-$breakpoint: (
-	xsmall: $breakpoint-xsmall,
-	small: $breakpoint-small,
-	medium: $breakpoint-medium,
-	large: $breakpoint-large,
-	xlarge: $breakpoint-xlarge,
-
-	mobile: $breakpoint-small,
-	tablet: $breakpoint-medium,
-	pc: $breakpoint-large,
-) !default;
+$breakpoint-small: 360px !default;
+$breakpoint-medium: 768px !default;
+$breakpoint-large: 1024px !default;
+$breakpoint-xlarge: 1280px !default;
+$breakpoint-xxlarge: 1440px !default;
 
 //TYPO CUSTOM
 $font-family-base: "Pretendard GOV", sans-serif !default;
 $font-size-base: 62.5% !default; //10px 1rem으로 설정
 
 $font-letter-spacings: (
-	none: var(--krds-font-letter-spacing-0),
-	wide: var(--krds-font-letter-spacing-1),
+	none: var(--krds-typo-letter-spacing-0),
+	wide: var(--krds-typo-letter-spacing-1),
 ) !default;
 
 //font weight

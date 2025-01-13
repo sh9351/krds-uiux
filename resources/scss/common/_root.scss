@@ -22,11 +22,6 @@ $mode-setting: light;
 		--krds-font-weight-#{$type}: #{$value};
 	}
 
-	//break point
-	@each $type, $value in $breakpoint {
-		--krds-breakpoint-#{$type}: #{$value};
-	}
-
 	//transition
 	--krds-transition-base: #{$transition-base};
 	--krds-transition-fade: #{$transition-fade};
@@ -69,15 +64,8 @@ $mode-setting: light;
 	}
 }
 
-//responsive tablet
-@include tablet {
-	:root {
-
-	}
-}
-
 //responsive mobile
-@include tabletLess {
+@include size-large-less {
 	:root {
 		//contents size
 		--krds-contents-padding-x: #{$contents-padding-x-mobile};
