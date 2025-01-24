@@ -1862,7 +1862,7 @@
   --krds-help-panel--width: 39rem;
   transition: var(--krds-transition-base);
 }
-@media (min-width: 1256px) and (max-width: 1860px) {
+@media (min-width: 1248px) and (max-width: 1860px) {
   #container .help-panel-flexible {
     --krds-help-panel--flexible-padding: calc(var(--krds-help-panel--width) - ((100% - var(--krds-contents-wrap-size)) / 2) + 4.5rem);
   }
@@ -1870,7 +1870,7 @@
     padding-right: var(--krds-help-panel--flexible-padding);
   }
 }
-@media (min-width: 1024px) and (max-width: 1256px) {
+@media (min-width: 1024px) and (max-width: 1248px) {
   #container .help-panel-flexible {
     --krds-help-panel--flexible-padding: calc(var(--krds-help-panel--width) + 4.5rem);
   }
