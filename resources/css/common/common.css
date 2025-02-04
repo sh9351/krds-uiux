@@ -35,6 +35,13 @@
   --krds-box-shadow-outline-inset: inset 0 0 0 0.2rem var(--krds-high-contrast-color-border-primary);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] :root {
+    --krds-box-shadow-outline: 0 0 0 0.4rem var(--krds-high-contrast-color-border-primary);
+    --krds-box-shadow-outline-inset: inset 0 0 0 0.2rem var(--krds-high-contrast-color-border-primary);
+  }
+}
+
 @media (max-width: 1023px) {
   :root {
     --krds-contents-padding-x: 16px;
@@ -822,6 +829,12 @@
   background-image: url(../../img/component/icon/ico_help_fill.svg);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] .svg-icon.ico-help {
+    background-image: url(../../img/component/icon/ico_help_fill.svg);
+  }
+}
+
 /* krds-drop-wrap */
 .krds-drop-wrap {
   --krds-dropdown--menu-radius: var(--krds-radius-medium4);
@@ -974,6 +987,28 @@
   forced-color-adjust: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] {
+    /* krds-drop-wrap */
+  }
+  [data-krds-mode=theme] .krds-drop-wrap {
+    --krds-dropdown--menu-color-border: var(--krds-high-contrast-color-border-gray-light);
+    --krds-dropdown--menu-color-surface: var(--krds-high-contrast-color-surface-white-subtler);
+    --krds-dropdown--menu-color-alpha-shadow: 0 0 0.2rem 0 var(--krds-high-contrast-color-alpha-shadow1), 0 0.4rem 0.8rem 0 var(--krds-high-contrast-color-alpha-shadow2);
+    --krds-dropdown--list-item-color-action-hover: var(--krds-high-contrast-color-action-secondary-hover);
+    --krds-dropdown--list-item-color-action-pressed: var(--krds-high-contrast-color-action-secondary-pressed);
+    --krds-dropdown--list-item-color-action-selected: var(--krds-high-contrast-color-action-secondary-selected);
+    --krds-dropdown--list-item-color-text-selected: var(--krds-high-contrast-color-text-secondary);
+  }
+  [data-krds-mode=theme] .krds-drop-wrap .drop-list .item-link .ico-go {
+    display: inline-flex;
+    width: var(--krds-icon--size-medium);
+    height: var(--krds-icon--size-medium);
+    background-color: var(--krds-high-contrast-color-text-basic);
+    forced-color-adjust: none;
+  }
+}
+
 /* reset */
 html, body {
   position: relative;
@@ -1004,6 +1039,15 @@ body {
 }
 [data-krds-mode=high-contrast] body {
   background-color: var(--krds-high-contrast-color-background-white);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] html, [data-krds-mode=theme] body {
+    color: var(--krds-high-contrast-color-text-basic);
+  }
+  [data-krds-mode=theme] body {
+    background-color: var(--krds-high-contrast-color-background-white);
+  }
 }
 
 *:focus {

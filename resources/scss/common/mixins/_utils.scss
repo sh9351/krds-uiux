@@ -168,9 +168,25 @@
 }
 
 //color mode setting
+//$mode-theme: (light, dark) !default;
 @mixin color-mode($mode: light) {
 	[data-krds-mode="#{$mode}"] {
 		@content;
+	}
+
+	$mode-theme: light;
+	@if ($mode == light) {
+		$mode-theme: light;
+	}
+	@else if ($mode == high-contrast) {
+		$mode-theme: dark;
+	}
+
+	//data-krds-mode가 theme일 경우 dark mode 생성
+	[data-krds-mode="theme"] {
+		@media (prefers-color-scheme: #{$mode-theme}) {
+			@content;
+		}
 	}
 }
 
