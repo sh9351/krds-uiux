@@ -17,6 +17,7 @@
 @mixin pagination-color-variable($mode: light) {
     --krds-pagination--color-text: var(--krds-#{$mode}-color-text-subtle);
     --krds-pagination--color-text-active: var(--krds-#{$mode}-color-text-inverse-static);
+    --krds-pagination--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
     --krds-pagination--color-action: var(--krds-#{$mode}-color-action-secondary);
     --krds-pagination--color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
     --krds-pagination--color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
@@ -74,6 +75,18 @@ $mode-setting: light;
                 transform: rotate(-90deg);
             }
         }
+        &.disabled {
+            $color: var(--krds-pagination--color-text-disabled);
+            color: $color;
+            &:hover,
+            &:active {
+                background-color: var(--krds-pagination--color-action-disabled);
+            }
+            &::before,
+            &::after {
+                background-color: $color;
+            }
+        }
     }
     .page-links {
         @include flex-layout($jc: center, $ai: center);
@@ -127,36 +140,19 @@ $mode-setting: light;
 }
 
 //태블릿 & 모바일 전용 속성
-@include size-large-less {
-	.krds-pagination {
-		.page-links{
-			.page-link{
-				&:nth-child(6),
-				&:nth-child(7),
-				&:nth-child(8){
-					display: none;
-				}
-			}
-		}
-	}
-}
-
-//태블릿 & 모바일 전용 속성
 @include size-medium {
     .krds-pagination {
+        flex-wrap: wrap;
 
-
-		flex-wrap: wrap;
-
-		.page-links{
-			width: 100%;
-		}
-		.page-navi{
-			&.next{
-				transition: none;
-				order: 1;
-			}
-		}
+        .page-links{
+            width: 100%;
+        }
+        .page-navi{
+            &.next{
+                transition: none;
+                order: 1;
+            }
+        }
         + .helper-box {
             margin-top: var(--krds-padding-9);
         }

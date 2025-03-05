@@ -92,7 +92,7 @@
 //check icon 정의
 @mixin form-chip-check($size, $mode: light) {
 	@include svg-icon($size: var(--krds-form-chip--check-size-#{$size}), $mode: #{$mode});
-	@include icon-set(ico_checkbox_checked);
+	@include icon-set(ico_checkbox);
 	background-color: var(--krds-form-chip--color-check);
 	transition: .4s cubic-bezier(.4, .0, .23, 1);
 }
@@ -136,6 +136,7 @@ $mode-setting: light;
 				border-color: var(--krds-form-chip--color-border-checked);
 				color: var(--krds-form-chip--color-text-checked);
 				&:before {
+					@include icon-set(ico_checkbox_checked);
 					background-color: var(--krds-form-chip--color-check-checked);
 				}
 			}

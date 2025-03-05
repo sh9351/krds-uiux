@@ -601,10 +601,17 @@ const krds_sideNavigation = {
     toggleButtons.forEach((toggleButton) => {
       toggleButton.addEventListener("click", () => {
         const expand = toggleButton.getAttribute("aria-expanded") !== "true";
-        this.toggleMenu(toggleButton, expand);
-        this.closeSiblingMenus(toggleButton);
+        
+        //this.toggleMenu(toggleButton, expand); 클릭 시 해당 버튼만 활성화 상태로 변경되어 해당 이벤트 주석처리.
+        //this.closeSiblingMenus(toggleButton);  클릭 시 해당 버튼만 활성화 상태로 변경되어 해당 이벤트 주석처리.
+        this.setActiveNav(toggleButton, expand);
       });
     });
+  },
+  setActiveNav(toggleButton, expand){
+    const parentListItem = toggleButton.closest("li");
+    toggleButton.setAttribute('aria-expanded', expand ? 'true' : 'false');
+    parentListItem.classList.toggle('active', expand);
   },
   setupPopupEvents() {
     let lastClickedButton = null;
@@ -671,7 +678,7 @@ const krds_sideNavigation = {
     const siblingButtons = parentListItem.parentNode.querySelectorAll(":scope > li > .lnb-toggle");
     siblingButtons.forEach((siblingButton) => {
       if (siblingButton !== toggleButton) {
-        this.toggleMenu(siblingButton, false);
+        this.toggleMenu(siblingButton, false); 
       }
     });
   },
@@ -1095,14 +1102,11 @@ const krds_contextualHelp = {
   setupFocusOutEvent() {
     document.addEventListener("click", (event) => {
       const clickedInsideTooltip = event.target.closest(".tooltip-action");
-      if (!clickedInsideTooltip) {
+      if (!clickedInsideTooltip ) {
         this.closeAllTooltips();
       } else {
-        const FocusPopover = clickedInsideTooltip.querySelector(".tooltip-popover");
-        FocusPopover.addEventListener("focusout", (event) => {
-          if (FocusPopover.contains(event.relatedTarget)) {
-            return;
-          }
+        const FocusPopover = clickedInsideTooltip.querySelector('.tooltip-close');
+        FocusPopover.addEventListener('focusout', ()=>{
           this.closeAllTooltips();
           clickedInsideTooltip.querySelector(".tooltip-btn")?.focus();
         });

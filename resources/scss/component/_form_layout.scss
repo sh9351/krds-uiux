@@ -49,8 +49,10 @@ $mode-setting: light;
 	@include flex-layout($ai: normal, $fd: column);
 	gap: var(--krds-form-group--gap);
 	width: 100%;
-	.form-tit {
+	.form-tit,
+	.form-label {
 		width: 100%;
+		color: var(--krds-#{$mode-setting}-color-text-subtle);
 	}	
 	.form-conts {
 		@include flex-layout($fd: column);
@@ -207,6 +209,11 @@ $mode-setting: light;
 
 	.form-group {
 		@include form-layout-color-variable(#{$mode-setting});
+
+		.form-tit,
+		.form-label {
+			color: var(--krds-#{$mode-setting}-color-text-subtle);
+		}
 
 		[class^=form-hint] {
 			&::before {

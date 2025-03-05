@@ -1192,6 +1192,11 @@ a:focus {
   text-decoration: none;
 }
 
+a:visited.visited,
+a:visited .visited {
+  color: var(--krds-light-color-link-visited);
+}
+
 button,
 input[type=submit],
 input[type=button] {
@@ -1396,6 +1401,17 @@ caption {
   .pc-line {
     display: block;
     line-height: inherit;
+  }
+}
+[data-krds-mode=high-contrast] a:visited.visited,
+[data-krds-mode=high-contrast] a:visited .visited {
+  color: var(--krds-high-contrast-color-link-visited);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] a:visited.visited,
+  [data-krds-mode=theme] a:visited .visited {
+    color: var(--krds-high-contrast-color-link-visited);
   }
 }
 /*# sourceMappingURL=common.css.map */

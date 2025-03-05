@@ -169,6 +169,12 @@ a:focus {
 	color: inherit;
 	text-decoration: none;
 }
+a:visited {
+	&.visited,
+	.visited {
+		color: var(--krds-#{$mode-setting}-color-link-visited);
+	}
+}
 button,
 input[type="submit"],
 input[type="button"] {
@@ -334,5 +340,18 @@ caption {
 	.pc-line {
 		display: block;
 		line-height: inherit;
+	}
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	a:visited {
+		&.visited,
+		.visited {
+			color: var(--krds-#{$mode-setting}-color-link-visited);
+		}
 	}
 }

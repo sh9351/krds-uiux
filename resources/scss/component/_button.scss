@@ -401,15 +401,19 @@ $mode-setting: light;
 		&.basic {
 			$color: var(--krds-#{$mode-setting}-color-text-basic);
 			color: $color;
-			@include underline();
-			text-decoration-color: var(--krds-#{$mode-setting}-color-border-transparency);
 			.svg-icon {
 				background-color: $color;
 			}
-			&:hover,
-			&:active,
-			&:focus {
-				text-decoration-color: inherit;
+			&.pure {
+				&:hover,
+				&:active,
+				&:focus,
+				&:visited {
+					color: $color;
+					.svg-icon {
+						background-color: $color;
+					}
+				}
 			}
 		}
 		&:hover {
@@ -433,6 +437,34 @@ $mode-setting: light;
 			text-decoration: none;
 			.svg-icon {
 				background-color: $color;
+			}
+		}
+		&.pure {
+			&:hover,
+			&:active,
+			&:focus,
+			&:visited {
+				$color: var(--krds-button--color-link-text);
+				color: $color;
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		.underline {
+			&.hidden-underline {
+				text-decoration-color: var(--krds-#{$mode-setting}-color-border-transparency);
+				transition: var(--krds-transition-base);
+			}
+		}
+		&:hover,
+		&:active,
+		&:focus,
+		&:visited {
+			.underline {
+				&.hidden-underline {
+					text-decoration-color: inherit;
+				}
 			}
 		}
 		.svg-icon {
@@ -531,6 +563,17 @@ $mode-setting: light;
 						background-color: $color;
 					}
 				}
+				&.pure {
+					&:hover,
+					&:active,
+					&:focus,
+					&:visited {
+						color: $color;
+						.svg-icon {
+							background-color: $color;
+						}
+					}
+				}
 			}
 			&:hover {
 				$color: var(--krds-#{$mode-setting}-color-link-hover);
@@ -560,7 +603,33 @@ $mode-setting: light;
 					}
 				}
 			}
-
+			&.pure {
+				&:hover,
+				&:active,
+				&:focus,
+				&:visited {
+					$color: var(--krds-button--color-link-text);
+					color: $color;
+					.svg-icon {
+						background-color: $color;
+					}
+				}
+			}
+			.underline {
+				&.hidden-underline {
+					text-decoration-color: var(--krds-#{$mode-setting}-color-border-transparency);
+				}
+			}
+			&:hover,
+			&:active,
+			&:focus,
+			&:visited {
+				.underline {
+					&.hidden-underline {
+						text-decoration-color: inherit;
+					}
+				}
+			}
 		}
 		/* icon 버튼 (텍스트 없음) */
 		&.icon {
